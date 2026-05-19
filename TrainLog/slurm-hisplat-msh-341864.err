@@ -1,0 +1,247 @@
+/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/__init__.py:41: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+xFormers not available
+FLASH ATTENTION2 not available
+xFormers not available
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 1 processes
+----------------------------------------------------------------------------------------------------
+
+wandb: WARNING `resume` will be ignored since W&B syncing is set to `offline`. Starting a new run with run id gidhiy1k.
+wandb: Tracking run with wandb version 0.17.1
+wandb: W&B syncing is set to `offline` in this directory.  
+wandb: Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name      | Type                     | Params | Mode 
+---------------------------------------------------------------
+0 | encoder   | EncoderCostVolumePyramid | 193 M  | train
+1 | decoder   | DecoderSplattingCUDA     | 0      | train
+2 | losses    | ModuleList               | 0      | train
+3 | rate_loss | RateLoss                 | 0      | train
+---------------------------------------------------------------
+106 M     Trainable params
+86.6 M    Non-trainable params
+193 M     Total params
+773.032   Total estimated model params size (MB)
+Error executing job with overrides: ['+experiment=re10k', 'mode=train', 'device=1', 'dataset.roots=[/data3/local_datasets/re10k]', 'data_loader.train.batch_size=2', 'data_loader.train.num_workers=8', 'output_dir=hisplat_msh_phase1_lmd0.003_20260513_103340', 'trainer.max_steps=50000', 'trainer.val_check_interval=1000', 'checkpointing.load=checkpoints/hisplat_re10k.ckpt', 'checkpointing.resume=false', 'checkpointing.every_n_train_steps=5000', 'model.encoder.gaussian_adapter.sh_degree=4', 'model.encoder.use_gauss_feature_compression=true', 'model.encoder.codec_stage_N=[96,192,192]', 'model.encoder.codec_stage_M=[128,320,320]', 'model.encoder.codec_stage_depth=[3,4,4]', 'train.phase=warmup', 'train.lambda_rd=0.003', 'train.lr_codec=1.0e-4', 'train.lr_aux=1.0e-3', 'train.lr_generator=2.0e-5', 'train.lr_codec_cooldown=2.0e-5', 'train.lr_generator_cooldown=5.0e-6', 'test.compress=false', 'wandb.mode=offline', 'wandb.name=hisplat_msh_warmup_lmd0.003']
+Traceback (most recent call last):
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/ceph_data/clue9986/HiSplatMSH/src/main.py", line 188, in <module>
+    train()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 223, in run_and_report
+    raise ex
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/hydra.py", line 132, in run
+    _ = ret.return_value
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/core/utils.py", line 260, in return_value
+    raise self._return_value
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "/ceph_data/clue9986/HiSplatMSH/src/main.py", line 173, in train
+    trainer.fit(model_wrapper, datamodule=data_module, ckpt_path=fit_ckpt_path)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 543, in fit
+    call._call_and_handle_interrupt(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 43, in _call_and_handle_interrupt
+    return trainer.strategy.launcher.launch(trainer_fn, *args, trainer=trainer, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/strategies/launchers/subprocess_script.py", line 105, in launch
+    return function(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 579, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 986, in _run
+    results = self._run_stage()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1030, in _run_stage
+    self.fit_loop.run()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py", line 205, in run
+    self.advance()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py", line 363, in advance
+    self.epoch_loop.run(self._data_fetcher)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/loops/training_epoch_loop.py", line 140, in run
+    self.advance(data_fetcher)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/loops/training_epoch_loop.py", line 269, in advance
+    call._call_callback_hooks(trainer, "on_train_batch_end", batch_output, batch, batch_idx)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 210, in _call_callback_hooks
+    fn(trainer, trainer.lightning_module, *args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py", line 314, in on_train_batch_end
+    self._save_topk_checkpoint(trainer, monitor_candidates)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py", line 383, in _save_topk_checkpoint
+    self._save_monitor_checkpoint(trainer, monitor_candidates)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py", line 703, in _save_monitor_checkpoint
+    self._update_best_and_save(current, trainer, monitor_candidates)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py", line 755, in _update_best_and_save
+    self._save_checkpoint(trainer, filepath)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py", line 388, in _save_checkpoint
+    trainer.save_checkpoint(filepath, self.save_weights_only)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1370, in save_checkpoint
+    self.strategy.save_checkpoint(checkpoint, filepath, storage_options=storage_options)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 490, in save_checkpoint
+    self.checkpoint_io.save_checkpoint(checkpoint, filepath, storage_options=storage_options)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/plugins/io/torch_io.py", line 58, in save_checkpoint
+    _atomic_save(checkpoint, path)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/utilities/cloud_io.py", line 80, in _atomic_save
+    f.write(bytesbuffer.getvalue())
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/fsspec/implementations/local.py", line 469, in write
+    return self.f.write(*args, **kwargs)
+OSError: [Errno 122] Disk quota exceeded
+Traceback (most recent call last):
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/ceph_data/clue9986/HiSplatMSH/src/main.py", line 188, in <module>
+    train()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 223, in run_and_report
+    raise ex
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/hydra.py", line 132, in run
+    _ = ret.return_value
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/core/utils.py", line 260, in return_value
+    raise self._return_value
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "/ceph_data/clue9986/HiSplatMSH/src/main.py", line 173, in train
+    trainer.fit(model_wrapper, datamodule=data_module, ckpt_path=fit_ckpt_path)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 543, in fit
+    call._call_and_handle_interrupt(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 43, in _call_and_handle_interrupt
+    return trainer.strategy.launcher.launch(trainer_fn, *args, trainer=trainer, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/strategies/launchers/subprocess_script.py", line 105, in launch
+    return function(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 579, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 986, in _run
+    results = self._run_stage()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1030, in _run_stage
+    self.fit_loop.run()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py", line 205, in run
+    self.advance()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py", line 363, in advance
+    self.epoch_loop.run(self._data_fetcher)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/loops/training_epoch_loop.py", line 140, in run
+    self.advance(data_fetcher)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/loops/training_epoch_loop.py", line 269, in advance
+    call._call_callback_hooks(trainer, "on_train_batch_end", batch_output, batch, batch_idx)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 210, in _call_callback_hooks
+    fn(trainer, trainer.lightning_module, *args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py", line 314, in on_train_batch_end
+    self._save_topk_checkpoint(trainer, monitor_candidates)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py", line 383, in _save_topk_checkpoint
+    self._save_monitor_checkpoint(trainer, monitor_candidates)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py", line 703, in _save_monitor_checkpoint
+    self._update_best_and_save(current, trainer, monitor_candidates)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py", line 755, in _update_best_and_save
+    self._save_checkpoint(trainer, filepath)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py", line 388, in _save_checkpoint
+    trainer.save_checkpoint(filepath, self.save_weights_only)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1370, in save_checkpoint
+    self.strategy.save_checkpoint(checkpoint, filepath, storage_options=storage_options)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 490, in save_checkpoint
+    self.checkpoint_io.save_checkpoint(checkpoint, filepath, storage_options=storage_options)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/plugins/io/torch_io.py", line 58, in save_checkpoint
+    _atomic_save(checkpoint, path)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/utilities/cloud_io.py", line 80, in _atomic_save
+    f.write(bytesbuffer.getvalue())
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/fsspec/implementations/local.py", line 469, in write
+    return self.f.write(*args, **kwargs)
+OSError: [Errno 122] Disk quota exceeded
+wandb: 
+wandb: Run history:
+wandb:                           epoch ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                        info/far ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                info/global_step ▁▁▁▁▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▇▇▇▇▇▇███
+wandb:                       info/near ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                        loss/aux ▁                                       
+wandb:                 loss/bpp_stage0 ▁                                       
+wandb:                 loss/bpp_stage1 ▁                                       
+wandb:                 loss/bpp_stage2 ▁                                       
+wandb:                  loss/bpp_total ▁                                       
+wandb:                    loss/lpips_0 ▁▇▆▆▇▆▆▆▆█▆▇▆▆▆▇▆▇▆▇▆▆▆▆▆▇▆▇▆▆▇▆▆▇▆▇▆▇▆▆
+wandb:                    loss/lpips_1 ▁▇▇▆▇▆▆▆▇█▇▇▇▆▇▇▆▇▆▇▇▆▇▇▇▇▇▇▆▆▇▆▆▇▇▇▇▇▇▆
+wandb:                    loss/lpips_2 ▁▇▇▆▇▆▆▆▇█▇▇▇▆▇▇▆▇▆▇▇▆▇▇▇▇▇▇▆▆▇▆▆▇▇▇▇▇▇▆
+wandb:                      loss/mse_0 ▁▅▆▇▆█▅▇▅▅▅▅▅▆▇▄██▆▇▄▅▆█▅▅▇▆▅▅▇▅▆▅▅▇▆▇▅▆
+wandb:                      loss/mse_1 ▁▅▆▇▆█▅▇▅▅▅▅▅▆▇▅██▆▇▄▅▆█▅▅▇▆▅▅▇▅▆▅▅▇▇▇▅▆
+wandb:                      loss/mse_2 ▁▅▆▇▆█▅▇▅▅▅▅▅▆▇▅██▆▇▄▅▆█▅▅▇▆▅▅▇▅▆▅▅▇▇▇▅▆
+wandb:                      loss/total ▁                                       
+wandb:                         lr-Adam ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                lr-Adam-momentum ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb: train/psnr_probabilistic_stage0 █▂▂▁▂▁▂▁▂▂▂▂▂▂▁▂▁▁▂▁▃▂▂▁▂▂▁▂▂▂▁▂▂▂▂▁▁▁▂▂
+wandb: train/psnr_probabilistic_stage1 █▂▂▁▂▁▂▁▂▂▂▂▂▂▁▂▁▁▂▁▃▂▂▁▂▂▁▂▂▂▁▂▂▂▂▁▁▁▂▂
+wandb: train/psnr_probabilistic_stage2 █▂▂▁▂▁▂▁▂▂▂▂▂▂▁▂▁▁▂▁▃▂▂▁▂▂▁▂▂▂▁▂▂▂▂▁▁▁▂▂
+wandb:             trainer/global_step ▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇███
+wandb:                   val/lpips_val ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                 val/lpips_val_0 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                 val/lpips_val_1 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                 val/lpips_val_2 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                    val/psnr_val ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                  val/psnr_val_0 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                  val/psnr_val_1 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                  val/psnr_val_2 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                    val/ssim_val ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                  val/ssim_val_0 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                  val/ssim_val_1 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                  val/ssim_val_2 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:                           epoch 0
+wandb:                        info/far 100.0
+wandb:                info/global_step 29949.0
+wandb:                       info/near 1.0
+wandb:                        loss/aux nan
+wandb:                 loss/bpp_stage0 nan
+wandb:                 loss/bpp_stage1 nan
+wandb:                 loss/bpp_stage2 nan
+wandb:                  loss/bpp_total nan
+wandb:                    loss/lpips_0 0.0361
+wandb:                    loss/lpips_1 0.0361
+wandb:                    loss/lpips_2 0.0361
+wandb:                      loss/mse_0 0.5219
+wandb:                      loss/mse_1 0.5219
+wandb:                      loss/mse_2 0.5219
+wandb:                      loss/total nan
+wandb:                         lr-Adam 0.0001
+wandb:                lr-Adam-momentum 0.9
+wandb: train/psnr_probabilistic_stage0 2.9008
+wandb: train/psnr_probabilistic_stage1 2.9008
+wandb: train/psnr_probabilistic_stage2 2.9008
+wandb:             trainer/global_step 29999
+wandb:                   val/lpips_val 0.71501
+wandb:                 val/lpips_val_0 0.71501
+wandb:                 val/lpips_val_1 0.71501
+wandb:                 val/lpips_val_2 0.71501
+wandb:                    val/psnr_val 4.74968
+wandb:                  val/psnr_val_0 4.74968
+wandb:                  val/psnr_val_1 4.74968
+wandb:                  val/psnr_val_2 4.74968
+wandb:                    val/ssim_val 0.00638
+wandb:                  val/ssim_val_0 0.00638
+wandb:                  val/ssim_val_1 0.00638
+wandb:                  val/ssim_val_2 0.00638
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /ceph_data/clue9986/HiSplatMSH/outputs/hisplat_msh_phase1_lmd0.003_20260513_103340/wandb/offline-run-20260513_103555-gidhiy1k
+wandb: Find logs at: ./outputs/hisplat_msh_phase1_lmd0.003_20260513_103340/wandb/offline-run-20260513_103555-gidhiy1k/logs

@@ -1,0 +1,192 @@
+/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/__init__.py:41: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+xFormers not available
+FLASH ATTENTION2 not available
+xFormers not available
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 1 processes
+----------------------------------------------------------------------------------------------------
+
+wandb: WARNING `resume` will be ignored since W&B syncing is set to `offline`. Starting a new run with run id 4ko5f8n2.
+wandb: Tracking run with wandb version 0.17.1
+wandb: W&B syncing is set to `offline` in this directory.  
+wandb: Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+Restoring states from the checkpoint path at /ceph_data/clue9986/HiSplatMSH/outputs/msh_cap_M96_bypass5k/checkpoints/epoch_0-step_5000.ckpt
+Error executing job with overrides: ['+experiment=re10k', 'mode=test', 'device=1', 'dataset.roots=[/data3/local_datasets/re10k]', 'data_loader.test.num_workers=8', 'output_dir=eval_cap_M96_s5000_forward', 'checkpointing.load=/ceph_data/clue9986/HiSplatMSH/outputs/msh_cap_M96_bypass5k/checkpoints/epoch_0-step_5000.ckpt', 'model.encoder.gaussian_adapter.sh_degree=4', 'model.encoder.use_gauss_feature_compression=true', 'model.encoder.codec_stage_N=[192,192,192]', 'model.encoder.codec_stage_M=[320,320,320]', 'model.encoder.codec_stage_depth=[2,4,4]', 'model.encoder.codec_train_mode=full', 'model.encoder.codec_input=proj', 'test.compress=false', 'test.compute_scores=true', 'wandb.mode=offline', 'wandb.name=eval_cap_M96_s5000_forward']
+Traceback (most recent call last):
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/ceph_data/clue9986/HiSplatMSH/src/main.py", line 188, in <module>
+    train()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 223, in run_and_report
+    raise ex
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/hydra.py", line 132, in run
+    _ = ret.return_value
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/core/utils.py", line 260, in return_value
+    raise self._return_value
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "/ceph_data/clue9986/HiSplatMSH/src/main.py", line 175, in train
+    trainer.test(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 753, in test
+    return call._call_and_handle_interrupt(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 43, in _call_and_handle_interrupt
+    return trainer.strategy.launcher.launch(trainer_fn, *args, trainer=trainer, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/strategies/launchers/subprocess_script.py", line 105, in launch
+    return function(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 793, in _test_impl
+    results = self._run(model, ckpt_path=ckpt_path)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 955, in _run
+    self._checkpoint_connector._restore_modules_and_callbacks(ckpt_path)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/connectors/checkpoint_connector.py", line 398, in _restore_modules_and_callbacks
+    self.restore_model()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/connectors/checkpoint_connector.py", line 275, in restore_model
+    self.trainer.strategy.load_model_state_dict(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 371, in load_model_state_dict
+    self.lightning_module.load_state_dict(checkpoint["state_dict"], strict=strict)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/nn/modules/module.py", line 2152, in load_state_dict
+    raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+RuntimeError: Error(s) in loading state_dict for ModelWrapper:
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.g_a_convs.1.weight: copying a param with shape torch.Size([96, 192, 5, 5]) from checkpoint, the shape in current model is torch.Size([320, 192, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.g_a_convs.1.bias: copying a param with shape torch.Size([96]) from checkpoint, the shape in current model is torch.Size([320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.AuxT_enc.1.OLP.linear.weight: copying a param with shape torch.Size([96, 768]) from checkpoint, the shape in current model is torch.Size([320, 768]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.AuxT_enc.1.OLP.linear.bias: copying a param with shape torch.Size([96]) from checkpoint, the shape in current model is torch.Size([320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.g_s_deconvs.0.weight: copying a param with shape torch.Size([96, 192, 5, 5]) from checkpoint, the shape in current model is torch.Size([320, 192, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.AuxT_dec.0.OLP.linear.weight: copying a param with shape torch.Size([768, 96]) from checkpoint, the shape in current model is torch.Size([768, 320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.h_a.0.weight: copying a param with shape torch.Size([192, 96, 3, 3]) from checkpoint, the shape in current model is torch.Size([192, 320, 3, 3]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.h_s.0.weight: copying a param with shape torch.Size([192, 96, 5, 5]) from checkpoint, the shape in current model is torch.Size([192, 320, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.h_s.0.bias: copying a param with shape torch.Size([96]) from checkpoint, the shape in current model is torch.Size([320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.h_s.2.weight: copying a param with shape torch.Size([96, 144, 5, 5]) from checkpoint, the shape in current model is torch.Size([320, 480, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.h_s.2.bias: copying a param with shape torch.Size([144]) from checkpoint, the shape in current model is torch.Size([480]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.h_s.4.weight: copying a param with shape torch.Size([192, 144, 3, 3]) from checkpoint, the shape in current model is torch.Size([640, 480, 3, 3]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.h_s.4.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([640]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.g_a_convs.3.weight: copying a param with shape torch.Size([96, 192, 5, 5]) from checkpoint, the shape in current model is torch.Size([320, 192, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.g_a_convs.3.bias: copying a param with shape torch.Size([96]) from checkpoint, the shape in current model is torch.Size([320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.AuxT_enc.3.OLP.linear.weight: copying a param with shape torch.Size([96, 768]) from checkpoint, the shape in current model is torch.Size([320, 768]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.AuxT_enc.3.OLP.linear.bias: copying a param with shape torch.Size([96]) from checkpoint, the shape in current model is torch.Size([320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.g_s_deconvs.0.weight: copying a param with shape torch.Size([96, 192, 5, 5]) from checkpoint, the shape in current model is torch.Size([320, 192, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.AuxT_dec.0.OLP.linear.weight: copying a param with shape torch.Size([768, 96]) from checkpoint, the shape in current model is torch.Size([768, 320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.h_a.0.weight: copying a param with shape torch.Size([192, 96, 3, 3]) from checkpoint, the shape in current model is torch.Size([192, 320, 3, 3]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.h_s.0.weight: copying a param with shape torch.Size([192, 96, 5, 5]) from checkpoint, the shape in current model is torch.Size([192, 320, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.h_s.0.bias: copying a param with shape torch.Size([96]) from checkpoint, the shape in current model is torch.Size([320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.h_s.2.weight: copying a param with shape torch.Size([96, 144, 5, 5]) from checkpoint, the shape in current model is torch.Size([320, 480, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.h_s.2.bias: copying a param with shape torch.Size([144]) from checkpoint, the shape in current model is torch.Size([480]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.h_s.4.weight: copying a param with shape torch.Size([192, 144, 3, 3]) from checkpoint, the shape in current model is torch.Size([640, 480, 3, 3]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.h_s.4.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([640]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.g_a_convs.3.weight: copying a param with shape torch.Size([96, 192, 5, 5]) from checkpoint, the shape in current model is torch.Size([320, 192, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.g_a_convs.3.bias: copying a param with shape torch.Size([96]) from checkpoint, the shape in current model is torch.Size([320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.AuxT_enc.3.OLP.linear.weight: copying a param with shape torch.Size([96, 768]) from checkpoint, the shape in current model is torch.Size([320, 768]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.AuxT_enc.3.OLP.linear.bias: copying a param with shape torch.Size([96]) from checkpoint, the shape in current model is torch.Size([320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.g_s_deconvs.0.weight: copying a param with shape torch.Size([96, 192, 5, 5]) from checkpoint, the shape in current model is torch.Size([320, 192, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.AuxT_dec.0.OLP.linear.weight: copying a param with shape torch.Size([768, 96]) from checkpoint, the shape in current model is torch.Size([768, 320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.h_a.0.weight: copying a param with shape torch.Size([192, 96, 3, 3]) from checkpoint, the shape in current model is torch.Size([192, 320, 3, 3]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.h_s.0.weight: copying a param with shape torch.Size([192, 96, 5, 5]) from checkpoint, the shape in current model is torch.Size([192, 320, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.h_s.0.bias: copying a param with shape torch.Size([96]) from checkpoint, the shape in current model is torch.Size([320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.h_s.2.weight: copying a param with shape torch.Size([96, 144, 5, 5]) from checkpoint, the shape in current model is torch.Size([320, 480, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.h_s.2.bias: copying a param with shape torch.Size([144]) from checkpoint, the shape in current model is torch.Size([480]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.h_s.4.weight: copying a param with shape torch.Size([192, 144, 3, 3]) from checkpoint, the shape in current model is torch.Size([640, 480, 3, 3]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.h_s.4.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([640]).
+Traceback (most recent call last):
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/ceph_data/clue9986/HiSplatMSH/src/main.py", line 188, in <module>
+    train()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 223, in run_and_report
+    raise ex
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/hydra.py", line 132, in run
+    _ = ret.return_value
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/core/utils.py", line 260, in return_value
+    raise self._return_value
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "/ceph_data/clue9986/HiSplatMSH/src/main.py", line 175, in train
+    trainer.test(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 753, in test
+    return call._call_and_handle_interrupt(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 43, in _call_and_handle_interrupt
+    return trainer.strategy.launcher.launch(trainer_fn, *args, trainer=trainer, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/strategies/launchers/subprocess_script.py", line 105, in launch
+    return function(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 793, in _test_impl
+    results = self._run(model, ckpt_path=ckpt_path)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 955, in _run
+    self._checkpoint_connector._restore_modules_and_callbacks(ckpt_path)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/connectors/checkpoint_connector.py", line 398, in _restore_modules_and_callbacks
+    self.restore_model()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/connectors/checkpoint_connector.py", line 275, in restore_model
+    self.trainer.strategy.load_model_state_dict(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 371, in load_model_state_dict
+    self.lightning_module.load_state_dict(checkpoint["state_dict"], strict=strict)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/nn/modules/module.py", line 2152, in load_state_dict
+    raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+RuntimeError: Error(s) in loading state_dict for ModelWrapper:
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.g_a_convs.1.weight: copying a param with shape torch.Size([96, 192, 5, 5]) from checkpoint, the shape in current model is torch.Size([320, 192, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.g_a_convs.1.bias: copying a param with shape torch.Size([96]) from checkpoint, the shape in current model is torch.Size([320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.AuxT_enc.1.OLP.linear.weight: copying a param with shape torch.Size([96, 768]) from checkpoint, the shape in current model is torch.Size([320, 768]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.AuxT_enc.1.OLP.linear.bias: copying a param with shape torch.Size([96]) from checkpoint, the shape in current model is torch.Size([320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.g_s_deconvs.0.weight: copying a param with shape torch.Size([96, 192, 5, 5]) from checkpoint, the shape in current model is torch.Size([320, 192, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.AuxT_dec.0.OLP.linear.weight: copying a param with shape torch.Size([768, 96]) from checkpoint, the shape in current model is torch.Size([768, 320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.h_a.0.weight: copying a param with shape torch.Size([192, 96, 3, 3]) from checkpoint, the shape in current model is torch.Size([192, 320, 3, 3]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.h_s.0.weight: copying a param with shape torch.Size([192, 96, 5, 5]) from checkpoint, the shape in current model is torch.Size([192, 320, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.h_s.0.bias: copying a param with shape torch.Size([96]) from checkpoint, the shape in current model is torch.Size([320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.h_s.2.weight: copying a param with shape torch.Size([96, 144, 5, 5]) from checkpoint, the shape in current model is torch.Size([320, 480, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.h_s.2.bias: copying a param with shape torch.Size([144]) from checkpoint, the shape in current model is torch.Size([480]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.h_s.4.weight: copying a param with shape torch.Size([192, 144, 3, 3]) from checkpoint, the shape in current model is torch.Size([640, 480, 3, 3]).
+	size mismatch for encoder.depth_predictor.depth_predictor.0.gauss_feature_codec.h_s.4.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([640]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.g_a_convs.3.weight: copying a param with shape torch.Size([96, 192, 5, 5]) from checkpoint, the shape in current model is torch.Size([320, 192, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.g_a_convs.3.bias: copying a param with shape torch.Size([96]) from checkpoint, the shape in current model is torch.Size([320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.AuxT_enc.3.OLP.linear.weight: copying a param with shape torch.Size([96, 768]) from checkpoint, the shape in current model is torch.Size([320, 768]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.AuxT_enc.3.OLP.linear.bias: copying a param with shape torch.Size([96]) from checkpoint, the shape in current model is torch.Size([320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.g_s_deconvs.0.weight: copying a param with shape torch.Size([96, 192, 5, 5]) from checkpoint, the shape in current model is torch.Size([320, 192, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.AuxT_dec.0.OLP.linear.weight: copying a param with shape torch.Size([768, 96]) from checkpoint, the shape in current model is torch.Size([768, 320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.h_a.0.weight: copying a param with shape torch.Size([192, 96, 3, 3]) from checkpoint, the shape in current model is torch.Size([192, 320, 3, 3]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.h_s.0.weight: copying a param with shape torch.Size([192, 96, 5, 5]) from checkpoint, the shape in current model is torch.Size([192, 320, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.h_s.0.bias: copying a param with shape torch.Size([96]) from checkpoint, the shape in current model is torch.Size([320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.h_s.2.weight: copying a param with shape torch.Size([96, 144, 5, 5]) from checkpoint, the shape in current model is torch.Size([320, 480, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.h_s.2.bias: copying a param with shape torch.Size([144]) from checkpoint, the shape in current model is torch.Size([480]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.h_s.4.weight: copying a param with shape torch.Size([192, 144, 3, 3]) from checkpoint, the shape in current model is torch.Size([640, 480, 3, 3]).
+	size mismatch for encoder.depth_predictor.depth_predictor.1.gauss_feature_codec.h_s.4.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([640]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.g_a_convs.3.weight: copying a param with shape torch.Size([96, 192, 5, 5]) from checkpoint, the shape in current model is torch.Size([320, 192, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.g_a_convs.3.bias: copying a param with shape torch.Size([96]) from checkpoint, the shape in current model is torch.Size([320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.AuxT_enc.3.OLP.linear.weight: copying a param with shape torch.Size([96, 768]) from checkpoint, the shape in current model is torch.Size([320, 768]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.AuxT_enc.3.OLP.linear.bias: copying a param with shape torch.Size([96]) from checkpoint, the shape in current model is torch.Size([320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.g_s_deconvs.0.weight: copying a param with shape torch.Size([96, 192, 5, 5]) from checkpoint, the shape in current model is torch.Size([320, 192, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.AuxT_dec.0.OLP.linear.weight: copying a param with shape torch.Size([768, 96]) from checkpoint, the shape in current model is torch.Size([768, 320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.h_a.0.weight: copying a param with shape torch.Size([192, 96, 3, 3]) from checkpoint, the shape in current model is torch.Size([192, 320, 3, 3]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.h_s.0.weight: copying a param with shape torch.Size([192, 96, 5, 5]) from checkpoint, the shape in current model is torch.Size([192, 320, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.h_s.0.bias: copying a param with shape torch.Size([96]) from checkpoint, the shape in current model is torch.Size([320]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.h_s.2.weight: copying a param with shape torch.Size([96, 144, 5, 5]) from checkpoint, the shape in current model is torch.Size([320, 480, 5, 5]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.h_s.2.bias: copying a param with shape torch.Size([144]) from checkpoint, the shape in current model is torch.Size([480]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.h_s.4.weight: copying a param with shape torch.Size([192, 144, 3, 3]) from checkpoint, the shape in current model is torch.Size([640, 480, 3, 3]).
+	size mismatch for encoder.depth_predictor.depth_predictor.2.gauss_feature_codec.h_s.4.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([640]).
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /ceph_data/clue9986/HiSplatMSH/outputs/eval_cap_M96_s5000_forward/wandb/offline-run-20260517_205033-4ko5f8n2
+wandb: Find logs at: ./outputs/eval_cap_M96_s5000_forward/wandb/offline-run-20260517_205033-4ko5f8n2/logs

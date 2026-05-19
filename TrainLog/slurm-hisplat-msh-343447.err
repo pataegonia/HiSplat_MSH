@@ -1,0 +1,68 @@
+/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/__init__.py:41: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+xFormers not available
+FLASH ATTENTION2 not available
+xFormers not available
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+`Trainer(val_check_interval=1)` was configured so validation will run after every batch.
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 1 processes
+----------------------------------------------------------------------------------------------------
+
+wandb: WARNING `resume` will be ignored since W&B syncing is set to `offline`. Starting a new run with run id 8e55q330.
+wandb: Tracking run with wandb version 0.17.1
+wandb: W&B syncing is set to `offline` in this directory.  
+wandb: Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name      | Type                     | Params | Mode 
+---------------------------------------------------------------
+0 | encoder   | EncoderCostVolumePyramid | 204 M  | train
+1 | decoder   | DecoderSplattingCUDA     | 0      | train
+2 | losses    | ModuleList               | 0      | train
+3 | rate_loss | RateLoss                 | 0      | train
+---------------------------------------------------------------
+118 M     Trainable params
+86.6 M    Non-trainable params
+204 M     Total params
+819.241   Total estimated model params size (MB)
+`Trainer.fit` stopped: `max_steps=1` reached.
+wandb: 
+wandb: Run history:
+wandb:               epoch ▁
+wandb: trainer/global_step ██████████▁
+wandb:       val/lpips_val ▁
+wandb:     val/lpips_val_0 ▁
+wandb:     val/lpips_val_1 ▁
+wandb:     val/lpips_val_2 ▁
+wandb:        val/psnr_val ▁
+wandb:      val/psnr_val_0 ▁
+wandb:      val/psnr_val_1 ▁
+wandb:      val/psnr_val_2 ▁
+wandb:        val/ssim_val ▁
+wandb:      val/ssim_val_0 ▁
+wandb:      val/ssim_val_1 ▁
+wandb:      val/ssim_val_2 ▁
+wandb: 
+wandb: Run summary:
+wandb:               epoch 0
+wandb: trainer/global_step 0
+wandb:       val/lpips_val 0.11683
+wandb:     val/lpips_val_0 0.13696
+wandb:     val/lpips_val_1 0.12879
+wandb:     val/lpips_val_2 0.11683
+wandb:        val/psnr_val 27.10668
+wandb:      val/psnr_val_0 26.16869
+wandb:      val/psnr_val_1 26.63223
+wandb:      val/psnr_val_2 27.10668
+wandb:        val/ssim_val 0.8879
+wandb:      val/ssim_val_0 0.86823
+wandb:      val/ssim_val_1 0.87869
+wandb:      val/ssim_val_2 0.8879
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /ceph_data/clue9986/HiSplatMSH/outputs/msh_proj_quantize_hp_forward_probe/wandb/offline-run-20260515_193720-8e55q330
+wandb: Find logs at: ./outputs/msh_proj_quantize_hp_forward_probe/wandb/offline-run-20260515_193720-8e55q330/logs

@@ -1,0 +1,31 @@
+============================================
+HiSplat + per-stage MSH training
+Repo: /ceph_data/clue9986/HiSplatMSH
+Phase: warmup
+Lambda RD: 0.0
+Pretrained ckpt: checkpoints/hisplat_re10k.ckpt
+Max steps: 5000
+Batch size/GPU: 2
+Checkpoint interval/top-k: 100000 / 0
+SH degree: 4
+Codec stage N: [96,192,192]
+Codec stage M: [128,320,320]
+Codec stage depth: [3,4,4]
+Codec train mode: quantize_hp
+LR codec/aux/generator: 1.0e-4 / 1.0e-3 / 2.0e-5
+Output: msh_quantize_hp
+Extra Hydra args: <none>
+============================================
+[36mSaving outputs to /ceph_data/clue9986/HiSplatMSH/outputs/msh_quantize_hp.[39m
+GPU number is 1
+missing keys:[]
+unexpected keys:[]
+error msgs:[]
+!!!Successfully load the DINOV2 ckpt from ./checkpoints/dinov2_vitb14_pretrain.pth
+==> Load multi-view transformer backbone checkpoint: checkpoints/gmdepth-scale1-resumeflowthings-scannet-5d9d7964.pth
+[36mInitialized new codec params: 378 missing checkpoint keys.[39m
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+Loading model from: /ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lpips/weights/v0.1/vgg.pth
+begin to train fit!
+start training without trainer-state resume!!!
+train step[0/5000] ; used: 0s; eta: 0s; loss = 0.125419; ['mse_0=0.016987; ', 'lpips_0=0.027491; ', 'mse_1=0.015512; ', 'lpips_1=0.025590; ', 'mse_2=0.012100; ', 'lpips_2=0.027739; ']

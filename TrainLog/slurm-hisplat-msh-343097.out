@@ -1,0 +1,136 @@
+============================================
+HiSplat + per-stage MSH training
+Repo: /ceph_data/clue9986/HiSplatMSH
+Phase: warmup
+Lambda RD: 0.0
+Pretrained ckpt: /ceph_data/clue9986/HiSplatMSH/outputs/msh_proj_quantize_bypass_5k/checkpoints/epoch_0-step_5000.ckpt
+Max steps: 1
+Batch size/GPU: 2
+Checkpoint interval/top-k: 1000 / 0
+SH degree: 4
+Codec stage N: [192,192,192]
+Codec stage M: [320,320,320]
+Codec stage depth: [2,4,4]
+Codec train mode: quantize
+Codec input: proj
+LR codec/aux/generator: 0.0 / 0.0 / 2.0e-5
+Codec LR warmup: 200 steps from factor 0.1
+Codec recon weight: 1.0
+Codec warmup bypass: false
+Output: msh_proj_quantize_forward_probe
+Extra Hydra args: <none>
+============================================
+[36mSaving outputs to /ceph_data/clue9986/HiSplatMSH/outputs/msh_proj_quantize_forward_probe.[39m
+GPU number is 1
+missing keys:[]
+unexpected keys:[]
+error msgs:[]
+!!!Successfully load the DINOV2 ckpt from ./checkpoints/dinov2_vitb14_pretrain.pth
+==> Load multi-view transformer backbone checkpoint: checkpoints/gmdepth-scale1-resumeflowthings-scannet-5d9d7964.pth
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+Loading model from: /ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lpips/weights/v0.1/vgg.pth
+begin to train fit!
+start training without trainer-state resume!!!
+train step[0/1] ; used: 0s; eta: 0s; loss = 0.476530; ['mse_0=0.000538; ', 'lpips_0=0.004361; ', 'codec_recon_0=0.039073; ', 'mse_1=0.000472; ', 'lpips_1=0.004018; ', 'codec_recon_1=0.314646; ', 'mse_2=0.000390; ', 'lpips_2=0.003619; ', 'codec_recon_2=0.109413; ']
+validation step on 1 1/100; scene = ['5aca87f95a9412c6']; context = [[58, 133]]
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+Loading model from: /ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lpips/weights/v0.1/vgg.pth
+validation step on 1 2/100; scene = ['bc95e5c7e357f1b7']; context = [[35, 91]]
+validation step on 1 3/100; scene = ['34b0658a5c200cdf']; context = [[0, 70]]
+validation step on 1 4/100; scene = ['28e8300e004ab30b']; context = [[3, 68]]
+validation step on 1 5/100; scene = ['6558c5f10d45a929']; context = [[43, 160]]
+validation step on 1 6/100; scene = ['89ea49cd9865aeff']; context = [[31, 81]]
+validation step on 1 7/100; scene = ['ed477bdf8582adff']; context = [[40, 85]]
+validation step on 1 8/100; scene = ['57d3409bf04c4651']; context = [[0, 45]]
+validation step on 1 9/100; scene = ['aadc1e2dc74fd644']; context = [[2, 52]]
+validation step on 1 10/100; scene = ['cd74b1244d112628']; context = [[63, 110]]
+validation step on 1 11/100; scene = ['57d25dafabb5a238']; context = [[32, 104]]
+validation step on 1 12/100; scene = ['e4f4574df7938f37']; context = [[0, 115]]
+validation step on 1 13/100; scene = ['20d86cff490c0c42']; context = [[18, 69]]
+validation step on 1 14/100; scene = ['0c4c5d5f751aabf5']; context = [[12, 57]]
+validation step on 1 15/100; scene = ['fea544b472e9abd1']; context = [[12, 93]]
+validation step on 1 16/100; scene = ['656381bea665bf3d']; context = [[27, 75]]
+validation step on 1 17/100; scene = ['322261824c4a3003']; context = [[33, 78]]
+validation step on 1 18/100; scene = ['f7c0fa5b81552d35']; context = [[11, 64]]
+validation step on 1 19/100; scene = ['a56ba2efb5e3fdd9']; context = [[33, 92]]
+validation step on 1 20/100; scene = ['c48f19e2ffa52523']; context = [[195, 264]]
+validation step on 1 21/100; scene = ['1214f2a11a9fc1ed']; context = [[103, 215]]
+validation step on 1 22/100; scene = ['a9b3ff60b213e099']; context = [[32, 96]]
+validation step on 1 23/100; scene = ['a6fa92e8204f6118']; context = [[2, 66]]
+validation step on 1 24/100; scene = ['21e794f71e31becb']; context = [[72, 180]]
+validation step on 1 25/100; scene = ['f7d916b43193c181']; context = [[7, 61]]
+validation step on 1 26/100; scene = ['84ab392d682f296b']; context = [[43, 120]]
+validation step on 1 27/100; scene = ['6771a51bf0cfce7f']; context = [[152, 199]]
+validation step on 1 28/100; scene = ['17d9303ee77c3a3d']; context = [[17, 63]]
+validation step on 1 29/100; scene = ['ffa95c3b40609c76']; context = [[120, 213]]
+validation step on 1 30/100; scene = ['a47b88040452d7d9']; context = [[35, 97]]
+validation step on 1 31/100; scene = ['0d4de33c6888a754']; context = [[2, 57]]
+validation step on 1 32/100; scene = ['41bcd011f99bfb66']; context = [[4, 50]]
+validation step on 1 33/100; scene = ['67a69088a2695987']; context = [[6, 86]]
+validation step on 1 34/100; scene = ['b4099665590548fc']; context = [[23, 74]]
+validation step on 1 35/100; scene = ['9e2a8cc5f32dd46b']; context = [[75, 151]]
+validation step on 1 36/100; scene = ['2e109379f53bb221']; context = [[35, 108]]
+validation step on 1 37/100; scene = ['8adebbb68f2c3f84']; context = [[72, 131]]
+validation step on 1 38/100; scene = ['29e0bfbad00f0d5e']; context = [[8, 100]]
+validation step on 1 39/100; scene = ['debc3490ba0bd84b']; context = [[34, 81]]
+validation step on 1 40/100; scene = ['7c7bc5285126e6ad']; context = [[64, 126]]
+validation step on 1 41/100; scene = ['cdf439b17a6a98d4']; context = [[31, 77]]
+validation step on 1 42/100; scene = ['cb38d67088b66084']; context = [[49, 106]]
+validation step on 1 43/100; scene = ['2da2eeb966bc0ef8']; context = [[30, 94]]
+validation step on 1 44/100; scene = ['bb4d7012261ee0ed']; context = [[0, 46]]
+validation step on 1 45/100; scene = ['9e1f1beb4ba8e5da']; context = [[9, 73]]
+validation step on 1 46/100; scene = ['26b31d71789bffad']; context = [[3, 57]]
+validation step on 1 47/100; scene = ['41abd737e0228c1a']; context = [[81, 127]]
+validation step on 1 48/100; scene = ['ed0c2aca14b99efa']; context = [[62, 119]]
+validation step on 1 49/100; scene = ['8d5163de9ea4d851']; context = [[39, 85]]
+validation step on 1 50/100; scene = ['81be42df6ccae760']; context = [[13, 107]]
+validation step on 1 51/100; scene = ['6fe141ec9be1a432']; context = [[12, 73]]
+validation step on 1 52/100; scene = ['3b6d8db52c54b174']; context = [[0, 80]]
+validation step on 1 53/100; scene = ['3087828bc27bc4c7']; context = [[15, 96]]
+validation step on 1 54/100; scene = ['e124dfa7e996a414']; context = [[48, 93]]
+validation step on 1 55/100; scene = ['e1afd89a69ee6947']; context = [[34, 113]]
+validation step on 1 56/100; scene = ['79ce50fb7b021e1d']; context = [[212, 278]]
+validation step on 1 57/100; scene = ['358bdee988c269ef']; context = [[3, 95]]
+validation step on 1 58/100; scene = ['f14791aec34dbdcd']; context = [[5, 59]]
+validation step on 1 59/100; scene = ['0c52996355b23d76']; context = [[51, 111]]
+validation step on 1 60/100; scene = ['62bcb465bb03d34f']; context = [[6, 84]]
+validation step on 1 61/100; scene = ['1f0e06e4388dd600']; context = [[44, 96]]
+validation step on 1 62/100; scene = ['c9c30723d7c54793']; context = [[152, 247]]
+validation step on 1 63/100; scene = ['8b212f2755d955ec']; context = [[40, 110]]
+validation step on 1 64/100; scene = ['de67e3a0b0648cfe']; context = [[16, 72]]
+validation step on 1 65/100; scene = ['54841308aff91857']; context = [[27, 86]]
+validation step on 1 66/100; scene = ['40ca76de44a6e1a9']; context = [[43, 107]]
+validation step on 1 67/100; scene = ['bc143130c1842e4b']; context = [[29, 133]]
+validation step on 1 68/100; scene = ['912177dbf0a1ed6c']; context = [[3, 60]]
+validation step on 1 69/100; scene = ['afe4e799a94e06b3']; context = [[54, 150]]
+validation step on 1 70/100; scene = ['17f552ef56d85c55']; context = [[20, 86]]
+validation step on 1 71/100; scene = ['a7c691c210154b09']; context = [[0, 50]]
+validation step on 1 72/100; scene = ['9490f1219dbbb6ce']; context = [[17, 72]]
+validation step on 1 73/100; scene = ['154365ab5a4e067b']; context = [[2, 48]]
+validation step on 1 74/100; scene = ['ab4c269f8d523d02']; context = [[18, 72]]
+validation step on 1 75/100; scene = ['75d475e9558ab806']; context = [[1, 46]]
+validation step on 1 76/100; scene = ['fdaab1f49851782c']; context = [[31, 142]]
+validation step on 1 77/100; scene = ['2d4efa3897a4ba2d']; context = [[4, 58]]
+validation step on 1 78/100; scene = ['14f477e7d5af5b91']; context = [[17, 72]]
+validation step on 1 79/100; scene = ['de45926738229f67']; context = [[22, 84]]
+validation step on 1 80/100; scene = ['5c909c802eb6edb1']; context = [[13, 78]]
+validation step on 1 81/100; scene = ['aa91dfdd5f4ad32b']; context = [[8, 57]]
+validation step on 1 82/100; scene = ['88d9ba3324f2ec21']; context = [[2, 49]]
+validation step on 1 83/100; scene = ['622ef98e83ed5239']; context = [[3, 66]]
+validation step on 1 84/100; scene = ['30fc5fc78c5a716e']; context = [[151, 210]]
+validation step on 1 85/100; scene = ['8b760ac05c93a6bb']; context = [[26, 72]]
+validation step on 1 86/100; scene = ['800ea72b6988f63e']; context = [[141, 190]]
+validation step on 1 87/100; scene = ['674dabef8f53b566']; context = [[9, 91]]
+validation step on 1 88/100; scene = ['d3a01038c5f21473']; context = [[139, 273]]
+validation step on 1 89/100; scene = ['3e5f747d06bc84a3']; context = [[85, 190]]
+validation step on 1 90/100; scene = ['bb6fa5bdafc14e8c']; context = [[43, 139]]
+validation step on 1 91/100; scene = ['052430ff6e2c07c4']; context = [[19, 92]]
+validation step on 1 92/100; scene = ['0588138dfec165a1']; context = [[70, 160]]
+validation step on 1 93/100; scene = ['e4bcb18fa6aa91be']; context = [[32, 79]]
+validation step on 1 94/100; scene = ['4c4fa41951e37e78']; context = [[8, 60]]
+validation step on 1 95/100; scene = ['252a24d25a1ea81d']; context = [[198, 263]]
+validation step on 1 96/100; scene = ['214df1c2863d2959']; context = [[45, 96]]
+validation step on 1 97/100; scene = ['bfd27ad72975e120']; context = [[8, 55]]
+validation step on 1 98/100; scene = ['572acd18419c3456']; context = [[3, 62]]
+validation step on 1 99/100; scene = ['b26e6c80d283c4c8']; context = [[46, 92]]
+validation step on 1 100/100; scene = ['10c8e54590f715f7']; context = [[6, 76]]

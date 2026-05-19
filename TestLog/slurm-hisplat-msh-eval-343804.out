@@ -1,0 +1,26 @@
+============================================
+HiSplat + per-stage MSH compress eval
+Repo: /ceph_data/clue9986/HiSplatMSH
+Dataset root: /data3/local_datasets/re10k
+Checkpoint: /ceph_data/clue9986/HiSplatMSH/outputs/msh_proj_full_ratewarm_l1e-5_15k/checkpoints/epoch_0-step_10000.ckpt
+Output: eval_ratewarm_l1e-5_s10000_compress
+W&B name: eval_ratewarm_l1e-5_s10000_compress
+SH degree: 4
+Codec stage N: [192,192,192]
+Codec stage M: [320,320,320]
+Codec stage depth: [2,4,4]
+Codec train mode: full
+Codec input: proj
+Extra Hydra args: <none>
+============================================
+[36mSaving outputs to /ceph_data/clue9986/HiSplatMSH/outputs/eval_ratewarm_l1e-5_s10000_compress.[39m
+GPU number is 1
+missing keys:[]
+unexpected keys:[]
+error msgs:[]
+!!!Successfully load the DINOV2 ckpt from ./checkpoints/dinov2_vitb14_pretrain.pth
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+Loading model from: /ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lpips/weights/v0.1/vgg.pth
+Testing: |          | 0/? [00:00<?, ?it/s]Testing:   0%|          | 0/7286 [00:00<?, ?it/s]Testing DataLoader 0:   0%|          | 0/7286 [00:00<?, ?it/s]Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+Loading model from: /ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lpips/weights/v0.1/vgg.pth
+Testing DataLoader 0:   0%|          | 1/7286 [00:09<18:20:07,  0.11it/s]Testing DataLoader 0:   0%|          | 2/7286 [00:09<9:36:41,  0.21it/s] Testing DataLoader 0:   0%|          | 3/7286 [00:09<6:42:37,  0.30it/s]Testing DataLoader 0:   0%|          | 4/7286 [00:10<5:15:53,  0.38it/s]Testing DataLoader 0:   0%|          | 5/7286 [00:10<4:23:29,  0.46it/s]Testing DataLoader 0:   0%|          | 6/7286 [00:11<3:48:41,  0.53it/s]Testing DataLoader 0:   0%|          | 7/7286 [00:11<3:24:14,  0.59it/s]Testing DataLoader 0:   0%|          | 8/7286 [00:12<3:05:24,  0.65it/s]Testing DataLoader 0:   0%|          | 9/7286 [00:12<2:51:09,  0.71it/s]Testing DataLoader 0:   0%|          | 10/7286 [00:13<2:39:22,  0.76it/s]Testing DataLoader 0:   0%|          | 11/7286 [00:13<2:29:44,  0.81it/s]Testing DataLoader 0:   0%|          | 12/7286 [00:14<2:21:39,  0.86it/s]Testing DataLoader 0:   0%|          | 13/7286 [00:14<2:14:46,  0.90it/s]Testing DataLoader 0:   0%|          | 14/7286 [00:14<2:08:55,  0.94it/s]Testing DataLoader 0:   0%|          | 15/7286 [00:15<2:03:46,  0.98it/s]Testing DataLoader 0:   0%|          | 16/7286 [00:15<1:59:15,  1.02it/s]Testing DataLoader 0:   0%|          | 17/7286 [00:16<1:55:20,  1.05it/s]Testing DataLoader 0:   0%|          | 18/7286 [00:16<1:51:55,  1.08it/s]Testing DataLoader 0:   0%|          | 19/7286 [00:17<1:48:45,  1.11it/s]Testing DataLoader 0:   0%|          | 20/7286 [00:17<1:45:56,  1.14it/s]Testing DataLoader 0:   0%|          | 21/7286 [00:17<1:43:27,  1.17it/s]Testing DataLoader 0:   0%|          | 22/7286 [00:18<1:41:09,  1.20it/s]Testing DataLoader 0:   0%|          | 23/7286 [00:18<1:39:02,  1.22it/s]Testing DataLoader 0:   0%|          | 24/7286 [00:19<1:37:04,  1.25it/s]Testing DataLoader 0:   0%|          | 25/7286 [00:19<1:35:19,  1.27it/s]Testing DataLoader 0:   0%|          | 26/7286 [00:20<1:33:39,  1.29it/s]Testing DataLoader 0:   0%|          | 27/7286 [00:20<1:32:07,  1.31it/s]Testing DataLoader 0:   0%|          | 28/7286 [00:21<1:30:43,  1.33it/s]Testing DataLoader 0:   0%|          | 29/7286 [00:21<1:29:27,  1.35it/s]Testing DataLoader 0:   0%|          | 30/7286 [00:21<1:28:14,  1.37it/s]Testing DataLoader 0:   0%|          | 31/7286 [00:22<1:27:06,  1.39it/s]Testing DataLoader 0:   0%|          | 32/7286 [00:22<1:26:02,  1.41it/s]

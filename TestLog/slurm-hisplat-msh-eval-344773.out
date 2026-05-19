@@ -1,0 +1,16 @@
+============================================
+HiSplat + per-stage MSH eval
+Repo: /ceph_data/clue9986/HiSplatMSH
+Dataset root: /data3/local_datasets/re10k
+Checkpoint: /ceph_data/clue9986/HiSplatMSH/outputs/licsweep_probe_l0.2_M320_d244_v2/checkpoints/epoch_0-step_15000.ckpt
+Output: eval_probe_l0.2_s15000_fwd
+W&B name: eval_probe_l0.2_s15000_fwd
+SH degree: 4
+Codec stage N: [192,192,192]
+Codec stage M: [320,320,320]
+Codec stage depth: [2,4,4]
+Codec train mode: full
+Codec input: proj
+Test compress: false
+Extra Hydra args: wandb.mode=disabled
+============================================

@@ -1,0 +1,76 @@
+============================================
+HiSplat + per-stage MSH training
+Repo: /ceph_data/clue9986/HiSplatMSH
+Phase: warmup
+Lambda RD: 0.0
+Pretrained ckpt: checkpoints/hisplat_re10k.ckpt
+Max steps: 1500
+Batch size/GPU: 2
+Checkpoint interval/top-k: 500 / 1
+SH degree: 4
+Codec stage N: [96,192,192]
+Codec stage M: [128,320,320]
+Codec stage depth: [3,4,4]
+Codec train mode: transform
+LR codec/aux/generator: 1.0e-6 / 1.0e-5 / 2.0e-5
+Codec LR warmup: 1000 steps from factor 0.1
+Output: msh_transform_lr1e6
+Extra Hydra args: <none>
+============================================
+[36mSaving outputs to /ceph_data/clue9986/HiSplatMSH/outputs/msh_transform_lr1e6.[39m
+GPU number is 1
+missing keys:[]
+unexpected keys:[]
+error msgs:[]
+!!!Successfully load the DINOV2 ckpt from ./checkpoints/dinov2_vitb14_pretrain.pth
+==> Load multi-view transformer backbone checkpoint: checkpoints/gmdepth-scale1-resumeflowthings-scannet-5d9d7964.pth
+[36mInitialized new codec params: 378 missing checkpoint keys.[39m
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+Loading model from: /ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lpips/weights/v0.1/vgg.pth
+begin to train fit!
+start training without trainer-state resume!!!
+train step[0/1500] ; used: 0s; eta: 0s; loss = 0.124944; ['mse_0=0.016531; ', 'lpips_0=0.027552; ', 'mse_1=0.015158; ', 'lpips_1=0.025636; ', 'mse_2=0.012033; ', 'lpips_2=0.028034; ']
+train step[1/1500] ; used: 11s; eta: 2h:28m:32s; loss = 0.128242; ['mse_0=0.019553; ', 'lpips_0=0.027028; ', 'mse_1=0.016450; ', 'lpips_1=0.024774; ', 'mse_2=0.013654; ', 'lpips_2=0.026784; ']
+train step[2/1500] ; used: 12s; eta: 1h:47m:13s; loss = 0.137275; ['mse_0=0.019529; ', 'lpips_0=0.028210; ', 'mse_1=0.019086; ', 'lpips_1=0.025628; ', 'mse_2=0.018257; ', 'lpips_2=0.026565; ']
+train step[3/1500] ; used: 13s; eta: 1h:26m:21s; loss = 0.175317; ['mse_0=0.034642; ', 'lpips_0=0.028708; ', 'mse_1=0.030189; ', 'lpips_1=0.025963; ', 'mse_2=0.028140; ', 'lpips_2=0.027674; ']
+train step[4/1500] ; used: 14s; eta: 1h:14m; loss = 0.135805; ['mse_0=0.020329; ', 'lpips_0=0.028157; ', 'mse_1=0.017582; ', 'lpips_1=0.026133; ', 'mse_2=0.016448; ', 'lpips_2=0.027155; ']
+train step[5/1500] ; used: 15s; eta: 1h:5m:36s; loss = 0.154096; ['mse_0=0.029038; ', 'lpips_0=0.029284; ', 'mse_1=0.020682; ', 'lpips_1=0.026893; ', 'mse_2=0.019586; ', 'lpips_2=0.028614; ']
+train step[6/1500] ; used: 16s; eta: 59m:44s; loss = 0.163230; ['mse_0=0.026997; ', 'lpips_0=0.030796; ', 'mse_1=0.024583; ', 'lpips_1=0.029626; ', 'mse_2=0.021983; ', 'lpips_2=0.029246; ']
+train step[7/1500] ; used: 17s; eta: 55m:14s; loss = 0.124573; ['mse_0=0.018145; ', 'lpips_0=0.027337; ', 'mse_1=0.013765; ', 'lpips_1=0.025318; ', 'mse_2=0.012806; ', 'lpips_2=0.027204; ']
+train step[8/1500] ; used: 18s; eta: 51m:47s; loss = 0.126360; ['mse_0=0.017384; ', 'lpips_0=0.027382; ', 'mse_1=0.015637; ', 'lpips_1=0.024099; ', 'mse_2=0.015214; ', 'lpips_2=0.026644; ']
+train step[9/1500] ; used: 19s; eta: 49m:5s; loss = 0.151204; ['mse_0=0.026405; ', 'lpips_0=0.029189; ', 'mse_1=0.021183; ', 'lpips_1=0.027281; ', 'mse_2=0.019665; ', 'lpips_2=0.027482; ']
+train step[10/1500] ; used: 20s; eta: 46m:50s; loss = 0.120327; ['mse_0=0.014614; ', 'lpips_0=0.028039; ', 'mse_1=0.013116; ', 'lpips_1=0.026492; ', 'mse_2=0.010709; ', 'lpips_2=0.027356; ']
+train step[11/1500] ; used: 21s; eta: 44m:54s; loss = 0.150105; ['mse_0=0.027242; ', 'lpips_0=0.030011; ', 'mse_1=0.021541; ', 'lpips_1=0.026732; ', 'mse_2=0.017828; ', 'lpips_2=0.026751; ']
+train step[12/1500] ; used: 22s; eta: 43m:16s; loss = 0.142646; ['mse_0=0.024392; ', 'lpips_0=0.029511; ', 'mse_1=0.017112; ', 'lpips_1=0.026607; ', 'mse_2=0.016506; ', 'lpips_2=0.028518; ']
+train step[13/1500] ; used: 23s; eta: 41m:53s; loss = 0.149662; ['mse_0=0.026276; ', 'lpips_0=0.027778; ', 'mse_1=0.021484; ', 'lpips_1=0.026526; ', 'mse_2=0.019268; ', 'lpips_2=0.028330; ']
+train step[14/1500] ; used: 24s; eta: 40m:43s; loss = 0.132937; ['mse_0=0.018853; ', 'lpips_0=0.029099; ', 'mse_1=0.015312; ', 'lpips_1=0.026605; ', 'mse_2=0.015109; ', 'lpips_2=0.027960; ']
+train step[15/1500] ; used: 25s; eta: 39m:39s; loss = 0.139908; ['mse_0=0.022735; ', 'lpips_0=0.028482; ', 'mse_1=0.018100; ', 'lpips_1=0.025938; ', 'mse_2=0.016977; ', 'lpips_2=0.027676; ']
+train step[16/1500] ; used: 26s; eta: 38m:46s; loss = 0.152704; ['mse_0=0.026010; ', 'lpips_0=0.029155; ', 'mse_1=0.022218; ', 'lpips_1=0.027698; ', 'mse_2=0.018945; ', 'lpips_2=0.028677; ']
+train step[17/1500] ; used: 27s; eta: 37m:57s; loss = 0.127301; ['mse_0=0.016382; ', 'lpips_0=0.026990; ', 'mse_1=0.016455; ', 'lpips_1=0.025728; ', 'mse_2=0.013971; ', 'lpips_2=0.027774; ']
+train step[18/1500] ; used: 28s; eta: 37m:12s; loss = 0.152662; ['mse_0=0.025811; ', 'lpips_0=0.028473; ', 'mse_1=0.022964; ', 'lpips_1=0.026993; ', 'mse_2=0.019839; ', 'lpips_2=0.028581; ']
+train step[19/1500] ; used: 29s; eta: 36m:33s; loss = 0.147065; ['mse_0=0.024795; ', 'lpips_0=0.028110; ', 'mse_1=0.020616; ', 'lpips_1=0.026884; ', 'mse_2=0.018484; ', 'lpips_2=0.028177; ']
+train step[20/1500] ; used: 30s; eta: 35m:57s; loss = 0.118950; ['mse_0=0.013830; ', 'lpips_0=0.027973; ', 'mse_1=0.012001; ', 'lpips_1=0.026053; ', 'mse_2=0.010581; ', 'lpips_2=0.028513; ']
+train step[21/1500] ; used: 31s; eta: 35m:22s; loss = 0.143115; ['mse_0=0.020343; ', 'lpips_0=0.028627; ', 'mse_1=0.018585; ', 'lpips_1=0.027526; ', 'mse_2=0.018643; ', 'lpips_2=0.029391; ']
+train step[22/1500] ; used: 32s; eta: 34m:51s; loss = 0.130381; ['mse_0=0.019058; ', 'lpips_0=0.027904; ', 'mse_1=0.017466; ', 'lpips_1=0.025112; ', 'mse_2=0.014643; ', 'lpips_2=0.026198; ']
+train step[23/1500] ; used: 33s; eta: 34m:22s; loss = 0.124458; ['mse_0=0.014629; ', 'lpips_0=0.027105; ', 'mse_1=0.015157; ', 'lpips_1=0.025630; ', 'mse_2=0.014144; ', 'lpips_2=0.027793; ']
+train step[24/1500] ; used: 34s; eta: 33m:56s; loss = 0.149867; ['mse_0=0.025550; ', 'lpips_0=0.028141; ', 'mse_1=0.021316; ', 'lpips_1=0.027440; ', 'mse_2=0.018399; ', 'lpips_2=0.029021; ']
+train step[25/1500] ; used: 35s; eta: 33m:31s; loss = 0.118550; ['mse_0=0.014885; ', 'lpips_0=0.027103; ', 'mse_1=0.012238; ', 'lpips_1=0.025529; ', 'mse_2=0.011071; ', 'lpips_2=0.027724; ']
+train step[26/1500] ; used: 36s; eta: 33m:9s; loss = 0.148216; ['mse_0=0.025973; ', 'lpips_0=0.028772; ', 'mse_1=0.019900; ', 'lpips_1=0.026414; ', 'mse_2=0.018530; ', 'lpips_2=0.028627; ']
+train step[27/1500] ; used: 37s; eta: 32m:47s; loss = 0.165092; ['mse_0=0.036056; ', 'lpips_0=0.028610; ', 'mse_1=0.026551; ', 'lpips_1=0.025775; ', 'mse_2=0.021593; ', 'lpips_2=0.026507; ']
+train step[28/1500] ; used: 38s; eta: 32m:29s; loss = 0.117237; ['mse_0=0.015670; ', 'lpips_0=0.026801; ', 'mse_1=0.013652; ', 'lpips_1=0.022865; ', 'mse_2=0.011904; ', 'lpips_2=0.026345; ']
+train step[29/1500] ; used: 39s; eta: 32m:10s; loss = 0.135393; ['mse_0=0.015791; ', 'lpips_0=0.031905; ', 'mse_1=0.014011; ', 'lpips_1=0.030168; ', 'mse_2=0.014644; ', 'lpips_2=0.028874; ']
+train step[30/1500] ; used: 40s; eta: 31m:53s; loss = 0.183836; ['mse_0=0.035261; ', 'lpips_0=0.031807; ', 'mse_1=0.030361; ', 'lpips_1=0.029127; ', 'mse_2=0.028235; ', 'lpips_2=0.029043; ']
+train step[31/1500] ; used: 41s; eta: 31m:36s; loss = 0.150194; ['mse_0=0.024209; ', 'lpips_0=0.030469; ', 'mse_1=0.020238; ', 'lpips_1=0.027762; ', 'mse_2=0.019292; ', 'lpips_2=0.028224; ']
+train step[32/1500] ; used: 42s; eta: 31m:22s; loss = 0.172915; ['mse_0=0.034524; ', 'lpips_0=0.029227; ', 'mse_1=0.028250; ', 'lpips_1=0.026923; ', 'mse_2=0.025736; ', 'lpips_2=0.028253; ']
+train step[33/1500] ; used: 43s; eta: 31m:7s; loss = 0.169822; ['mse_0=0.034572; ', 'lpips_0=0.029344; ', 'mse_1=0.026752; ', 'lpips_1=0.026365; ', 'mse_2=0.024808; ', 'lpips_2=0.027980; ']
+train step[34/1500] ; used: 44s; eta: 30m:53s; loss = 0.121778; ['mse_0=0.015958; ', 'lpips_0=0.027772; ', 'mse_1=0.013200; ', 'lpips_1=0.025791; ', 'mse_2=0.011512; ', 'lpips_2=0.027545; ']
+train step[35/1500] ; used: 45s; eta: 30m:40s; loss = 0.121365; ['mse_0=0.017249; ', 'lpips_0=0.027173; ', 'mse_1=0.011208; ', 'lpips_1=0.026630; ', 'mse_2=0.011130; ', 'lpips_2=0.027975; ']
+train step[36/1500] ; used: 46s; eta: 30m:28s; loss = 0.161274; ['mse_0=0.027945; ', 'lpips_0=0.030080; ', 'mse_1=0.024673; ', 'lpips_1=0.028278; ', 'mse_2=0.020859; ', 'lpips_2=0.029440; ']
+train step[37/1500] ; used: 47s; eta: 30m:16s; loss = 0.144807; ['mse_0=0.025488; ', 'lpips_0=0.028115; ', 'mse_1=0.021163; ', 'lpips_1=0.026325; ', 'mse_2=0.016234; ', 'lpips_2=0.027483; ']
+train step[38/1500] ; used: 48s; eta: 30m:5s; loss = 0.142543; ['mse_0=0.022179; ', 'lpips_0=0.029803; ', 'mse_1=0.018594; ', 'lpips_1=0.026727; ', 'mse_2=0.016450; ', 'lpips_2=0.028789; ']
+train step[39/1500] ; used: 49s; eta: 29m:54s; loss = 0.130406; ['mse_0=0.020244; ', 'lpips_0=0.028196; ', 'mse_1=0.015771; ', 'lpips_1=0.024427; ', 'mse_2=0.014988; ', 'lpips_2=0.026781; ']
+train step[40/1500] ; used: 50s; eta: 29m:44s; loss = 0.133898; ['mse_0=0.019053; ', 'lpips_0=0.027837; ', 'mse_1=0.016218; ', 'lpips_1=0.026561; ', 'mse_2=0.015531; ', 'lpips_2=0.028698; ']
+train step[41/1500] ; used: 51s; eta: 29m:34s; loss = 0.111393; ['mse_0=0.013137; ', 'lpips_0=0.026440; ', 'mse_1=0.011470; ', 'lpips_1=0.024284; ', 'mse_2=0.009936; ', 'lpips_2=0.026127; ']
+train step[42/1500] ; used: 52s; eta: 29m:24s; loss = 0.103159; ['mse_0=0.008395; ', 'lpips_0=0.026168; ', 'mse_1=0.008105; ', 'lpips_1=0.025163; ', 'mse_2=0.008045; ', 'lpips_2=0.027282; ']
+train step[43/1500] ; used: 53s; eta: 29m:16s; loss = 0.125415; ['mse_0=0.018451; ', 'lpips_0=0.027711; ', 'mse_1=0.014995; ', 'lpips_1=0.024390; ', 'mse_2=0.013370; ', 'lpips_2=0.026499; ']
+train step[44/1500] ; used: 54s; eta: 29m:9s; loss = 0.119801; ['mse_0=0.016655; ', 'lpips_0=0.027243; ', 'mse_1=0.012387; ', 'lpips_1=0.024352; ', 'mse_2=0.012523; ', 'lpips_2=0.026641; ']

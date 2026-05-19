@@ -1,0 +1,18 @@
+============================================
+HiSplat + per-stage MSH training
+Repo: /ceph_data/clue9986/HiSplatMSH
+Phase: warmup
+Lambda RD: 0.0
+Pretrained ckpt: checkpoints/hisplat_re10k.ckpt
+Max steps: 5000
+Batch size/GPU: 2
+Checkpoint interval/top-k: 1000 / 1
+SH degree: 4
+Codec stage N: [96,192,192]
+Codec stage M: [128,320,320]
+Codec stage depth: [3,4,4]
+Codec train mode: quantize
+LR codec/aux/generator: 1.0e-4 / 1.0e-3 / 2.0e-5
+Output: /data3/clue9986/hisplat_msh_runs/msh_quantize
+Extra Hydra args: <none>
+============================================

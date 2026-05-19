@@ -1,0 +1,115 @@
+/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/__init__.py:41: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+xFormers not available
+FLASH ATTENTION2 not available
+xFormers not available
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 1 processes
+----------------------------------------------------------------------------------------------------
+
+wandb: WARNING `resume` will be ignored since W&B syncing is set to `offline`. Starting a new run with run id yfymdioi.
+wandb: Tracking run with wandb version 0.17.1
+wandb: W&B syncing is set to `offline` in this directory.  
+wandb: Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name      | Type                     | Params | Mode 
+---------------------------------------------------------------
+0 | encoder   | EncoderCostVolumePyramid | 177 M  | train
+1 | decoder   | DecoderSplattingCUDA     | 0      | train
+2 | losses    | ModuleList               | 0      | train
+3 | rate_loss | RateLoss                 | 0      | train
+---------------------------------------------------------------
+91.4 M    Trainable params
+86.6 M    Non-trainable params
+177 M     Total params
+711.952   Total estimated model params size (MB)
+`Trainer.fit` stopped: `max_steps=5000` reached.
+wandb: 
+wandb: Run history:
+wandb:                           epoch ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                        info/far ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                info/global_step ▁▁▁▁▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▇▇▇▇▇▇███
+wandb:                       info/near ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                        loss/aux ████▇▇▇▇▇▆▆▆▆▆▆▅▅▅▅▅▄▄▄▄▄▄▃▃▃▃▃▂▂▂▂▂▂▁▁▁
+wandb:                 loss/bpp_stage0 ▁▂▂▂▂▄▄▄▅▅▅▆▆▆▅▆▆▆▇▇▇▇▇█▇▇▇▆▇█▇▇▇█▇▇▇█▇█
+wandb:                 loss/bpp_stage1 ▁▆▅▅▅▅▅▅▆▅▆▆▆▆▆▆▆▆▇▇▇▇▇▇▇█▇▇████████████
+wandb:                 loss/bpp_stage2 ▁▂▂▃▃▅▄▅▅▅▆▆▆▇▆▆▆▆▇▇▇▇▇█▇█▇▇▇██▇██▇█▇███
+wandb:                  loss/bpp_total ▁▂▂▂▃▄▄▄▅▅▅▆▆▆▅▆▆▆▇▇▇▇▇█▇▇▇▆███▇▇█▇▇██▇█
+wandb:         loss/codec_recon_stage0 █▆▆▅▄▄▃▃▃▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:         loss/codec_recon_stage1 █▆▄▅▄▅▃▄▄▃▄▄▄▃▃▂▂▃▃▂▃▂▃▃▂▃▂▁▂▃▂▂▂▂▁▁▁▁▁▂
+wandb:         loss/codec_recon_stage2 █▅▄▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▁▂▂▁▁▁▁▁▁▁▂▂▁▁▁▁▁▁▁▁▁▁
+wandb:          loss/codec_recon_total █▆▅▄▃▃▃▃▃▂▂▃▂▂▂▂▂▂▂▂▂▁▂▂▁▂▁▁▁▂▁▁▁▁▁▁▁▁▁▁
+wandb:                    loss/lpips_0 ▂▂▂▄▂▄▂▃▅▃▂▄▄▇▇▃▅▂▄▄▆▃▅█▁▄▃▃▃▃▃▂▆▇▄▂▁▂▂▇
+wandb:                    loss/lpips_1 ▂▂▂▄▂▃▂▂▄▃▂▄▃▇█▄▆▂▄▅▆▃▅█▁▃▃▄▃▃▃▂▆▇▅▃▁▂▂▆
+wandb:                    loss/lpips_2 ▂▁▂▄▂▃▂▂▄▃▂▄▃▇█▄▆▁▄▅▇▃▅█▁▂▃▄▃▃▃▂▆▇▅▃▁▂▂▆
+wandb:                      loss/mse_0 ▁▂▁▂▂▂▁▂▂▁▁▂▂█▂▂▁▁▂▂▂▁▂▃▁▂▁▁▁▂▂▁▂▃▃▁▁▁▁▂
+wandb:                      loss/mse_1 ▁▂▁▂▂▂▁▂▂▁▁▂▂█▂▂▂▁▂▂▂▁▂▃▁▂▁▂▁▂▁▁▂▃▃▁▁▁▁▂
+wandb:                      loss/mse_2 ▁▂▁▃▂▂▁▂▂▁▁▂▁█▂▂▂▁▂▂▂▁▂▃▁▁▁▂▁▂▁▁▂▃▃▁▁▁▁▂
+wandb:                      loss/total █▆▅▄▃▃▃▃▃▂▂▃▂▂▂▂▂▂▂▂▂▁▂▂▁▂▁▁▁▂▁▁▁▁▁▁▁▁▁▁
+wandb:                         lr-Adam ▁▆██████████████████████████████████████
+wandb:                lr-Adam-momentum ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb: train/psnr_probabilistic_stage0 ▅▃▆▂▅▃▇▅▂▇▆▄▅▁▅▅▅▅▃▃▄▅▄▂▆▃▆▆▆▂▄▇▄▃▄▅█▅▆▃
+wandb: train/psnr_probabilistic_stage1 ▅▃▆▂▅▃▇▅▃▇▆▄▆▁▄▄▄▆▃▃▄▅▄▂▆▄▆▆▆▂▅▇▄▃▄▅█▅▆▂
+wandb: train/psnr_probabilistic_stage2 ▅▃▆▂▅▃▇▅▃▇▆▄▆▁▄▄▄▆▄▃▄▅▄▂▆▄▆▅▆▃▅▇▄▃▄▄█▅▆▃
+wandb:             trainer/global_step ▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▄▄▅▅▅▅▅▆▆▆▆▇▇▇▇▇▇▇███
+wandb:                   val/lpips_val ▅▃▅▇█▅▃▆▆▁
+wandb:                 val/lpips_val_0 ▃▄▄▆█▆▃█▅▁
+wandb:                 val/lpips_val_1 ▄▃▅▇█▅▃▇▆▁
+wandb:                 val/lpips_val_2 ▅▃▅▇█▅▃▆▆▁
+wandb:                    val/psnr_val ▇▃▇▅▃▃▇▁▁█
+wandb:                  val/psnr_val_0 ▅▃█▃▄▁▃▁▅▆
+wandb:                  val/psnr_val_1 ▇▃▆▄▃▃▇▁▁█
+wandb:                  val/psnr_val_2 ▇▃▇▅▃▃▇▁▁█
+wandb:                    val/ssim_val █▆▇▃▁▃▆▄▅█
+wandb:                  val/ssim_val_0 █▇█▃▁▂▄▄▇▇
+wandb:                  val/ssim_val_1 █▆▇▃▁▃▆▄▅█
+wandb:                  val/ssim_val_2 █▆▇▃▁▃▆▄▅█
+wandb: 
+wandb: Run summary:
+wandb:                           epoch 0
+wandb:                        info/far 100.0
+wandb:                info/global_step 4999.0
+wandb:                       info/near 1.0
+wandb:                        loss/aux 23748.5625
+wandb:                 loss/bpp_stage0 2.01774
+wandb:                 loss/bpp_stage1 0.10609
+wandb:                 loss/bpp_stage2 0.09864
+wandb:                  loss/bpp_total 2.22248
+wandb:         loss/codec_recon_stage0 0.15798
+wandb:         loss/codec_recon_stage1 0.55318
+wandb:         loss/codec_recon_stage2 0.21088
+wandb:          loss/codec_recon_total 0.92204
+wandb:                    loss/lpips_0 0.00609
+wandb:                    loss/lpips_1 0.00486
+wandb:                    loss/lpips_2 0.00455
+wandb:                      loss/mse_0 0.00202
+wandb:                      loss/mse_1 0.00179
+wandb:                      loss/mse_2 0.00173
+wandb:                      loss/total 0.92204
+wandb:                         lr-Adam 0.0001
+wandb:                lr-Adam-momentum 0.9
+wandb: train/psnr_probabilistic_stage0 27.09819
+wandb: train/psnr_probabilistic_stage1 27.96631
+wandb: train/psnr_probabilistic_stage2 28.35521
+wandb:             trainer/global_step 4999
+wandb:                   val/lpips_val 0.10806
+wandb:                 val/lpips_val_0 0.13172
+wandb:                 val/lpips_val_1 0.11138
+wandb:                 val/lpips_val_2 0.10806
+wandb:                    val/psnr_val 27.50352
+wandb:                  val/psnr_val_0 26.31497
+wandb:                  val/psnr_val_1 27.28973
+wandb:                  val/psnr_val_2 27.50352
+wandb:                    val/ssim_val 0.89376
+wandb:                  val/ssim_val_0 0.87071
+wandb:                  val/ssim_val_1 0.89078
+wandb:                  val/ssim_val_2 0.89376
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /ceph_data/clue9986/HiSplatMSH/outputs/msh_cap_M128_bypass5k/wandb/offline-run-20260517_205140-yfymdioi
+wandb: Find logs at: ./outputs/msh_cap_M128_bypass5k/wandb/offline-run-20260517_205140-yfymdioi/logs

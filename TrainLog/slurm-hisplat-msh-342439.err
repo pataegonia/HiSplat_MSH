@@ -1,0 +1,39 @@
+/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/__init__.py:41: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+xFormers not available
+FLASH ATTENTION2 not available
+xFormers not available
+Error executing job with overrides: ['+experiment=re10k', 'mode=train', 'device=1', 'dataset.roots=[/data3/local_datasets/re10k]', 'data_loader.train.batch_size=2', 'data_loader.train.num_workers=8', 'output_dir=/data3/clue9986/hisplat_msh_runs/msh_quantize', 'trainer.max_steps=5000', 'trainer.val_check_interval=1000', 'checkpointing.load=checkpoints/hisplat_re10k.ckpt', 'checkpointing.resume=false', 'checkpointing.every_n_train_steps=1000', 'checkpointing.save_top_k=1', 'model.encoder.gaussian_adapter.sh_degree=4', 'model.encoder.use_gauss_feature_compression=true', 'model.encoder.codec_stage_N=[96,192,192]', 'model.encoder.codec_stage_M=[128,320,320]', 'model.encoder.codec_stage_depth=[3,4,4]', 'model.encoder.codec_train_mode=quantize', 'train.phase=warmup', 'train.lambda_rd=0.0', 'train.lr_codec=1.0e-4', 'train.lr_aux=1.0e-3', 'train.lr_generator=2.0e-5', 'train.lr_codec_cooldown=2.0e-5', 'train.lr_generator_cooldown=5.0e-6', 'test.compress=false', 'wandb.mode=offline', 'wandb.name=hisplat_msh_warmup_lmd0.0']
+Traceback (most recent call last):
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/ceph_data/clue9986/HiSplatMSH/src/main.py", line 188, in <module>
+    train()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 223, in run_and_report
+    raise ex
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/hydra.py", line 132, in run
+    _ = ret.return_value
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/core/utils.py", line 260, in return_value
+    raise self._return_value
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "/ceph_data/clue9986/HiSplatMSH/src/main.py", line 55, in train
+    os.makedirs(output_dir, exist_ok=True)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/os.py", line 215, in makedirs
+    makedirs(head, exist_ok=exist_ok)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/os.py", line 215, in makedirs
+    makedirs(head, exist_ok=exist_ok)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/os.py", line 225, in makedirs
+    mkdir(name, mode)
+PermissionError: [Errno 13] Permission denied: '/data3/clue9986'

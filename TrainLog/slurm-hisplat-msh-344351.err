@@ -1,0 +1,108 @@
+/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/__init__.py:41: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+xFormers not available
+FLASH ATTENTION2 not available
+xFormers not available
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 1 processes
+----------------------------------------------------------------------------------------------------
+
+wandb: WARNING `resume` will be ignored since W&B syncing is set to `offline`. Starting a new run with run id 69wpu3na.
+wandb: Tracking run with wandb version 0.17.1
+wandb: W&B syncing is set to `offline` in this directory.  
+wandb: Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name      | Type                     | Params | Mode 
+---------------------------------------------------------------
+0 | encoder   | EncoderCostVolumePyramid | 204 M  | train
+1 | decoder   | DecoderSplattingCUDA     | 0      | train
+2 | losses    | ModuleList               | 0      | train
+3 | rate_loss | RateLoss                 | 0      | train
+---------------------------------------------------------------
+118 M     Trainable params
+86.6 M    Non-trainable params
+204 M     Total params
+819.241   Total estimated model params size (MB)
+[W reducer.cpp:1346] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+`Trainer.fit` stopped: `max_steps=15000` reached.
+wandb: 
+wandb: Run history:
+wandb:                           epoch ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                        info/far ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                info/global_step ▁▁▁▁▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇███
+wandb:                       info/near ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                        loss/aux ████▇▇▇▇▇▆▆▆▆▆▆▅▅▅▅▅▄▄▄▄▄▄▃▃▃▃▃▃▂▂▂▂▂▁▁▁
+wandb:            loss/bpp_attr_stage0 ▁▁▁▂▂▃▂▃▄▄▃▄▃▄▄▅▄▅▅▄▄▆▅▆▆▅▅▄▆▅▆▇▇▅▆▇▆▆▇█
+wandb:            loss/bpp_attr_stage1 ▂▄▁▂▂▂▁▂▄▂▂▂▂▂▃▄▃▄▃▃▃▄▄▆▅▄▅▄▆▄▆▇▆▄▆▇▅▆▇█
+wandb:            loss/bpp_attr_stage2 ▄▄▁▂▂▂▁▂▄▂▂▂▂▂▂▃▃▄▃▃▃▄▄▅▅▄▅▄▅▄▆▆▅▅▆▇▅▆▇█
+wandb:             loss/bpp_attr_total ▁▁▁▂▂▃▂▃▄▃▃▄▃▄▄▅▄▅▅▄▄▆▅▆▆▅▅▄▆▅▆▇▇▅▆▇▆▆▇█
+wandb:                 loss/bpp_stage0 ▁▁▁▂▂▃▂▃▄▄▃▄▃▄▄▅▄▅▅▄▄▆▅▆▆▅▅▄▆▅▆▇▇▅▆▇▆▆▇█
+wandb:                 loss/bpp_stage1 ▂▄▁▂▂▂▁▂▄▂▂▂▂▂▃▄▃▄▃▃▃▄▄▆▅▄▅▄▆▄▆▇▆▄▆▇▅▆▇█
+wandb:                 loss/bpp_stage2 ▄▄▁▂▂▂▁▂▄▂▂▂▂▂▂▃▃▄▃▃▃▄▄▅▅▄▅▄▅▄▆▆▅▅▆▇▅▆▇█
+wandb:                  loss/bpp_total ▁▁▁▂▂▃▂▃▄▃▃▄▃▄▄▅▄▅▅▄▄▆▅▆▆▅▅▄▆▅▆▇▇▅▆▇▆▆▇█
+wandb:         loss/codec_recon_stage0 ███▇▇▇▆▆▅▆▅▅▅▅▄▄▄▃▄▄▄▃▃▂▃▃▂▂▃▄▂▂▂▂▂▂▂▂▁▁
+wandb:         loss/codec_recon_stage1 ▃█▇▅▃▂▃▂▂▃▁▁▂▁▂▁▁▃▁▂▁▁▂▂▂▃▃▃▂▂▂▃▃▂▃▂▃▃▄▃
+wandb:         loss/codec_recon_stage2 ▁▁▂▂▃▂▂▄▄▅▄▅▆▄▅▃▅█▆▅▅█▆▅▆▇▆▅▇▇▇▇▇▇▆▆▆▇██
+wandb:               loss/estimated_kb ▂▂▁▂▂▂▁▂▃▃▂▃▃▃▃▄▃▄▄▃▄▅▄▆▅▅▅▄▆▄▆▇▆▅▆▇▅▆▇█
+wandb:        loss/estimated_kb_stage0 ▁▁▁▂▂▃▂▃▄▄▃▄▃▄▄▅▄▅▅▄▄▆▅▆▆▅▅▄▆▅▆▇▇▅▆▇▆▆▇█
+wandb:        loss/estimated_kb_stage1 ▂▄▁▂▂▂▁▂▄▂▂▂▂▂▃▄▃▄▃▃▃▄▄▆▅▄▅▄▆▄▆▇▆▄▆▇▅▆▇█
+wandb:        loss/estimated_kb_stage2 ▄▄▁▂▂▂▁▂▄▂▂▂▂▂▂▃▃▄▃▃▃▄▄▅▅▄▅▄▅▄▆▆▅▅▆▇▅▆▇█
+wandb:                    loss/lpips_0 █▇▄▄▄▃▃▄▄▂▃▄▂▄▂▃▁▂▂▂▃▃▁▃▂▂▁▁▁▁▁▂▂▁▁▃▁▁▂▃
+wandb:                    loss/lpips_1 █▆▄▄▄▄▅▅▅▄▄▆▂▆▃▄▂▂▄▃▄▄▂▅▃▃▁▂▁▁▂▂▂▂▂▅▂▁▂▄
+wandb:                    loss/lpips_2 ▇▆▃▃▃▃▇▆▃▄▅█▁▇▂▄▃▂▅▅▆▃▂▆▅▄▁▂▂▂▂▂▂▃▃▇▃▂▃▅
+wandb:                      loss/mse_0 ▇█▄▃▂▃▂▃▅▂▃▅▁▄▂▃▂▄▂▁▃▃▂▄▄▄▂▁▂▁▂▂▂▂▂▃▂▂▂▅
+wandb:                      loss/mse_1 ▇█▃▃▂▃▃▄▆▂▃▇▁▅▂▃▂▄▂▁▄▃▂▆▅▅▂▁▃▁▂▂▂▂▃▄▂▂▃▇
+wandb:                      loss/mse_2 ▇█▂▂▂▂▄▄▄▂▃█▁▅▂▃▂▄▂▁▄▂▂▆▅▅▂▁▃▁▂▂▂▂▃▄▂▂▂▇
+wandb:             loss/rate_bpp_total ▂▂▁▂▂▂▁▂▃▃▂▃▃▃▃▄▃▄▄▃▄▅▄▆▅▅▅▄▆▄▆▇▆▅▆▇▅▆▇█
+wandb:                      loss/total ██▄▃▃▃▄▄▅▃▄▆▁▅▂▄▂▃▃▂▄▃▂▅▃▄▁▁▂▁▂▂▂▂▂▄▂▁▂▅
+wandb:                         lr-Adam ▁███████████████████████████████████████
+wandb:                lr-Adam-momentum ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb: train/psnr_probabilistic_stage0 ▂▁▃▄▅▄▅▄▂▅▄▃▇▃▅▄▆▄▅▇▅▄▆▃▃▄▆▆▅█▆▅▅▅▅▄▆▆▅▃
+wandb: train/psnr_probabilistic_stage1 ▁▁▄▄▅▄▅▃▂▅▄▃▇▂▅▄▅▄▅▆▅▄▅▂▃▄▆▆▄█▅▅▅▅▄▃▅▆▅▂
+wandb: train/psnr_probabilistic_stage2 ▁▁▅▅▆▄▄▃▃▅▄▂█▂▆▄▅▄▅▇▄▄▅▂▂▄▇▇▄█▆▅▅▅▅▃▅▆▅▁
+wandb:             trainer/global_step ▁▁▁▁▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇███
+wandb: 
+wandb: Run summary:
+wandb:                           epoch 0
+wandb:                        info/far 100.0
+wandb:                info/global_step 14999.0
+wandb:                       info/near 1.0
+wandb:                        loss/aux 23712.66406
+wandb:            loss/bpp_attr_stage0 1.88765
+wandb:            loss/bpp_attr_stage1 0.08849
+wandb:            loss/bpp_attr_stage2 0.05133
+wandb:             loss/bpp_attr_total 2.02747
+wandb:                 loss/bpp_stage0 1.88765
+wandb:                 loss/bpp_stage1 0.08849
+wandb:                 loss/bpp_stage2 0.05133
+wandb:                  loss/bpp_total 2.02747
+wandb:         loss/codec_recon_stage0 0.63007
+wandb:         loss/codec_recon_stage1 1.99422
+wandb:         loss/codec_recon_stage2 4.60855
+wandb:               loss/estimated_kb 586.18884
+wandb:        loss/estimated_kb_stage0 324.67569
+wandb:        loss/estimated_kb_stage1 76.10114
+wandb:        loss/estimated_kb_stage2 185.41203
+wandb:                    loss/lpips_0 0.00646
+wandb:                    loss/lpips_1 0.0057
+wandb:                    loss/lpips_2 0.00455
+wandb:                      loss/mse_0 0.00329
+wandb:                      loss/mse_1 0.00287
+wandb:                      loss/mse_2 0.0025
+wandb:             loss/rate_bpp_total 18.3184
+wandb:                      loss/total 0.02537
+wandb:                         lr-Adam 0.0001
+wandb:                lr-Adam-momentum 0.9
+wandb: train/psnr_probabilistic_stage0 25.1725
+wandb: train/psnr_probabilistic_stage1 25.73628
+wandb: train/psnr_probabilistic_stage2 26.31438
+wandb:             trainer/global_step 14999
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /ceph_data/clue9986/HiSplatMSH/outputs/licsweep_probe_l0.0_M320_d244_v2/wandb/offline-run-20260518_164237-69wpu3na
+wandb: Find logs at: ./outputs/licsweep_probe_l0.0_M320_d244_v2/wandb/offline-run-20260518_164237-69wpu3na/logs

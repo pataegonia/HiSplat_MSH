@@ -1,0 +1,101 @@
+/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/__init__.py:41: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+xFormers not available
+FLASH ATTENTION2 not available
+xFormers not available
+Error executing job with overrides: ['+experiment=re10k', 'mode=train', 'device=1', 'dataset.roots=[/data3/local_datasets/re10k]', 'data_loader.train.batch_size=2', 'data_loader.train.num_workers=8', 'output_dir=/data3/clue9986/hisplat_msh_runs/msh_transform', 'trainer.max_steps=5000', 'trainer.val_check_interval=1000', 'checkpointing.load=checkpoints/hisplat_re10k.ckpt', 'checkpointing.resume=false', 'checkpointing.every_n_train_steps=1000', 'checkpointing.save_top_k=1', 'model.encoder.gaussian_adapter.sh_degree=4', 'model.encoder.use_gauss_feature_compression=true', 'model.encoder.codec_stage_N=[96,192,192]', 'model.encoder.codec_stage_M=[128,320,320]', 'model.encoder.codec_stage_depth=[3,4,4]', 'model.encoder.codec_train_mode=transform', 'train.phase=warmup', 'train.lambda_rd=0', 'train.lr_codec=1.0e-4', 'train.lr_aux=1.0e-3', 'train.lr_generator=2.0e-5', 'train.lr_codec_cooldown=2.0e-5', 'train.lr_generator_cooldown=5.0e-6', 'test.compress=false', 'wandb.mode=offline', 'wandb.name=hisplat_msh_warmup_lmd0']
+Traceback (most recent call last):
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/jaxtyping/_decorator.py", line 425, in wrapped_fn
+    param_fn(*args, **kwargs)
+  File "<@beartype(src.model.model_wrapper.check_params) at 0x7fe83fa3c9d0>", line 195, in check_params
+beartype.roar.BeartypeCallHintParamViolation: Method src.model.model_wrapper.check_params() parameter lambda_rd=0 violates type hint float | None, as int 0 not float or <class "builtins.NoneType">.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/ceph_data/clue9986/HiSplatMSH/src/main.py", line 188, in <module>
+    train()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 223, in run_and_report
+    raise ex
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/hydra.py", line 132, in run
+    _ = ret.return_value
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/core/utils.py", line 260, in return_value
+    raise self._return_value
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "/ceph_data/clue9986/HiSplatMSH/src/main.py", line 48, in train
+    cfg = load_typed_root_config(cfg_dict)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/jaxtyping/_decorator.py", line 457, in wrapped_fn
+    out = fn(*args, **kwargs)
+  File "/ceph_data/clue9986/HiSplatMSH/src/config.py", line 90, in load_typed_root_config
+    return load_typed_config(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/jaxtyping/_decorator.py", line 457, in wrapped_fn
+    out = fn(*args, **kwargs)
+  File "/ceph_data/clue9986/HiSplatMSH/src/config.py", line 73, in load_typed_config
+    return from_dict(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/dacite/core.py", line 64, in from_dict
+    value = _build_value(type_=field_type, data=field_data, config=config)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/dacite/core.py", line 99, in _build_value
+    data = from_dict(data_class=type_, data=data, config=config)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/dacite/core.py", line 81, in from_dict
+    instance = data_class(**init_values)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/jaxtyping/_decorator.py", line 282, in __init__
+    _check_dataclass_annotations(self, typechecker)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/jaxtyping/_decorator.py", line 566, in _check_dataclass_annotations
+    f(self, **values)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/jaxtyping/_decorator.py", line 454, in wrapped_fn
+    raise TypeCheckError(msg) from e
+jaxtyping.TypeCheckError: Type-check error whilst checking the parameters of TrainCfg.
+The problem arose whilst typechecking parameter 'lambda_rd'.
+Actual value: 0
+Expected type: float | None.
+----------------------
+Called with parameters: { 'align_2d': False,
+  'align_3d': False,
+  'align_depth': False,
+  'cooldown_steps': 10000,
+  'depth_mode': None,
+  'extended_visualization': False,
+  'finetune_steps': 80000,
+  'lambda_rd': 0,
+  'lr_aux': 0.001,
+  'lr_codec': 0.0001,
+  'lr_codec_cooldown': 2e-05,
+  'lr_generator': 2e-05,
+  'lr_generator_cooldown': 5e-06,
+  'normal_norm': True,
+  'phase': 'warmup',
+  'print_log_every_n_steps': 1,
+  'self': TrainCfg(depth_mode=None,
+                   extended_visualization=False,
+                   print_log_every_n_steps=1,
+                   align_2d=False,
+                   align_3d=False,
+                   align_depth=False,
+                   normal_norm=True,
+                   lambda_rd=0,
+                   phase='warmup',
+                   lr_codec=0.0001,
+                   lr_aux=0.001,
+                   lr_generator=2e-05,
+                   warmup_steps=20000,
+                   finetune_steps=80000,
+                   cooldown_steps=10000,
+                   lr_codec_cooldown=2e-05,
+                   lr_generator_cooldown=5e-06),
+  'warmup_steps': 20000}
+Parameter annotations: (self: Any, depth_mode: Optional[Literal['depth', 'log', 'disparity', 'relative_disparity']], extended_visualization: bool, print_log_every_n_steps: int, align_2d: bool | float, align_3d: bool | float, align_depth: bool | float, normal_norm: bool, lambda_rd: float | None, phase: str, lr_codec: float | None, lr_aux: float | None, lr_generator: float | None, warmup_steps: int, finetune_steps: int, cooldown_steps: int, lr_codec_cooldown: float | None, lr_generator_cooldown: float | None).
+

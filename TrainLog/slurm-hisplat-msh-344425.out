@@ -1,0 +1,30 @@
+============================================
+HiSplat + per-stage MSH training
+Repo: /ceph_data/clue9986/HiSplatMSH
+Phase: warmup
+Lambda RD: 0.2
+Pretrained ckpt: checkpoints/hisplat_re10k.ckpt
+Max steps: 15000
+Batch size/GPU: 2
+Val interval/check epoch: 2500 / 1
+Checkpoint interval/top-k: 5000 / -1
+SH degree: 4
+Codec stage N: [192,192,192]
+Codec stage M: [320,320,320]
+Codec stage depth: [2,4,4]
+Codec train mode: full
+Codec input: proj
+LR codec/aux/generator: 1.0e-4 / 1.0e-5 / 2.0e-5
+Codec LR warmup: 200 steps from factor 0.1
+Codec recon weight: 0.0
+Codec warmup bypass: false
+Output: licsweep_probe_l0.2_M320_d244_v2
+Extra Hydra args: <none>
+============================================
+[36mSaving outputs to /ceph_data/clue9986/HiSplatMSH/outputs/licsweep_probe_l0.2_M320_d244_v2.[39m
+GPU number is 1
+missing keys:[]
+unexpected keys:[]
+error msgs:[]
+!!!Successfully load the DINOV2 ckpt from ./checkpoints/dinov2_vitb14_pretrain.pth
+==> Load multi-view transformer backbone checkpoint: checkpoints/gmdepth-scale1-resumeflowthings-scannet-5d9d7964.pth

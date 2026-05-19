@@ -1,0 +1,23 @@
+/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/__init__.py:41: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+xFormers not available
+FLASH ATTENTION2 not available
+xFormers not available
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 1 processes
+----------------------------------------------------------------------------------------------------
+
+wandb: WARNING `resume` will be ignored since W&B syncing is set to `offline`. Starting a new run with run id 5j27a7bg.
+wandb: Tracking run with wandb version 0.17.1
+wandb: W&B syncing is set to `offline` in this directory.  
+wandb: Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+Restoring states from the checkpoint path at /ceph_data/clue9986/HiSplatMSH/outputs/msh_proj_full_ratewarm_l1e-5_15k/checkpoints/epoch_0-step_10000.ckpt
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Loaded model weights from the checkpoint at /ceph_data/clue9986/HiSplatMSH/outputs/msh_proj_full_ratewarm_l1e-5_15k/checkpoints/epoch_0-step_10000.ckpt
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /ceph_data/clue9986/HiSplatMSH/outputs/eval_ratewarm_l1e-5_s10000_forward/wandb/offline-run-20260517_102352-5j27a7bg
+wandb: Find logs at: ./outputs/eval_ratewarm_l1e-5_s10000_forward/wandb/offline-run-20260517_102352-5j27a7bg/logs
