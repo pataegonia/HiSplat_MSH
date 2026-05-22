@@ -237,11 +237,11 @@ class EncoderCostVolumePyramid(Encoder):
             codec_payloads=stage_payloads,
         )
 
-    def update_codecs(self, force: bool = True):
+    def update_codecs(self, force: bool = True, update_quantiles: bool = True):
         for module in self.modules():
             codec = getattr(module, "gauss_feature_codec", None)
             if codec is not None:
-                codec.update(force=force)
+                codec.update(force=force, update_quantiles=update_quantiles)
 
     def convert_to_gaussians(self, result_dict, context, features_list, global_step, visualization_dump):
         stage_num = len(result_dict)

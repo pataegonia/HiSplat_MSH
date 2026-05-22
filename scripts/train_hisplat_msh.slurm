@@ -5,7 +5,7 @@
 #SBATCH --cpus-per-gpu=8
 #SBATCH --mem-per-gpu=48G
 #SBATCH -p batch_ugrad
-#SBATCH -w ariel-v12
+#SBATCH -w ariel-v11
 #SBATCH -t 6-00:00:00
 #SBATCH -o slurm-hisplat-msh-%A.out
 #SBATCH -e slurm-hisplat-msh-%A.err
@@ -59,6 +59,7 @@ CODEC_STAGE_N="${CODEC_STAGE_N:-[192,192,192]}"
 CODEC_STAGE_M="${CODEC_STAGE_M:-[320,320,320]}"
 CODEC_STAGE_DEPTH="${CODEC_STAGE_DEPTH:-[2,4,4]}"
 CODEC_TRAIN_MODE="${CODEC_TRAIN_MODE:-transform}" # transform|quantize|quantize_hp|full
+WANDB_MODE="${WANDB_MODE:-disabled}"
 OUTPUT_NAME="${OUTPUT_NAME:-hisplat_msh_${CODEC_TRAIN_MODE}_phase${PHASE}_lmd${LAMBDA_RD}_$(date +%Y%m%d_%H%M%S)}"
 
 if [[ "${LAMBDA_RD}" =~ ^-?[0-9]+$ ]]; then
@@ -177,6 +178,7 @@ echo "Codec LR warmup: ${CODEC_LR_WARMUP_STEPS} steps from factor ${CODEC_LR_WAR
 echo "Codec recon weight: ${CODEC_RECON_WEIGHT}"
 echo "Codec warmup bypass: ${CODEC_WARMUP_BYPASS}"
 echo "Output: ${OUTPUT_NAME}"
+echo "W&B mode: ${WANDB_MODE}"
 echo "Extra Hydra args: ${EXTRA_HYDRA_ARGS:-<none>}"
 echo "============================================"
 
@@ -216,6 +218,6 @@ python -m src.main \
     "train.codec_recon_weight=${CODEC_RECON_WEIGHT}" \
     "train.codec_warmup_bypass=${CODEC_WARMUP_BYPASS}" \
     "test.compress=false" \
-    "wandb.mode=offline" \
+    "wandb.mode=${WANDB_MODE}" \
     "wandb.name=hisplat_msh_${TRAIN_PHASE}_lmd${LAMBDA_RD}" \
     "${EXTRA_ARGS_ARR[@]}"

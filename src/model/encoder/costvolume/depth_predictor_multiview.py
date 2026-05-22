@@ -575,7 +575,15 @@ class DepthPredictorRefine(nn.Module):
             return (*torch.split(feat_stack, [c_proj, 1, 1], dim=1), None)
         return torch.split(feat_stack, [c_proj, 1, 1, 3], dim=1)
 
-    def _apply_codec(self, feat_stack, codec_mode, codec_payload):
+    def _codec_debug_info(self, extra_info):
+        return {
+            "stage_id": self.stage_id,
+            "scene_names": None if extra_info is None else extra_info.get("scene_names"),
+            "global_step": None if extra_info is None else extra_info.get("global_step"),
+            "codec_input": self.codec_input,
+        }
+
+    def _apply_codec(self, feat_stack, codec_mode, codec_payload, extra_info=None):
         if self.gauss_feature_codec is None:
             return feat_stack, None
 
@@ -594,7 +602,10 @@ class DepthPredictorRefine(nn.Module):
             }
 
         if codec_mode == "compress":
-            payload = self.gauss_feature_codec.compress(feat_stack)
+            payload = self.gauss_feature_codec.compress(
+                feat_stack,
+                debug_info=self._codec_debug_info(extra_info),
+            )
             decoded = self.gauss_feature_codec.decompress(**payload)
             x_hat = decoded["x_hat"]
             self._check_codec_output(x_hat, codec_mode)
@@ -717,6 +728,7 @@ class DepthPredictorRefine(nn.Module):
                 proj_feat_in_fullres,
                 codec_mode,
                 codec_payload,
+                extra_info,
             )
         else:
             feat_stack = self._pack_stage_stack(
@@ -726,7 +738,7 @@ class DepthPredictorRefine(nn.Module):
                 pdf_max,
                 pre_stage_residual,
             )
-            feat_stack, codec_info = self._apply_codec(feat_stack, codec_mode, codec_payload)
+            feat_stack, codec_info = self._apply_codec(feat_stack, codec_mode, codec_payload, extra_info)
             c_proj = proj_feat_in_fullres.shape[1]
             proj_feat_in_fullres, coarse_disps, pdf_max, pre_stage_residual = self._unpack_stage_stack(
                 feat_stack,

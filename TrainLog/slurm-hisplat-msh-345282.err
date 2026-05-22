@@ -1,0 +1,31 @@
+/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/__init__.py:41: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+xFormers not available
+FLASH ATTENTION2 not available
+xFormers not available
+rm: cannot remove '/ceph_data/clue9986/HiSplatMSH/latest-run': No such file or directory
+ln: failed to create symbolic link '/ceph_data/clue9986/HiSplatMSH/latest-run': File exists
+rm: cannot remove 'outputs/local': No such file or directory
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 1 processes
+----------------------------------------------------------------------------------------------------
+
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name      | Type                     | Params | Mode 
+---------------------------------------------------------------
+0 | encoder   | EncoderCostVolumePyramid | 204 M  | train
+1 | decoder   | DecoderSplattingCUDA     | 0      | train
+2 | losses    | ModuleList               | 0      | train
+3 | rate_loss | RateLoss                 | 0      | train
+---------------------------------------------------------------
+118 M     Trainable params
+86.6 M    Non-trainable params
+204 M     Total params
+819.241   Total estimated model params size (MB)
+[W reducer.cpp:1346] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+`Trainer.fit` stopped: `max_steps=50000` reached.

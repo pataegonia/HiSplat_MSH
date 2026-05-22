@@ -293,8 +293,16 @@ class ModelWrapper(LightningModule):
         self.bg_time = time.time()
 
     def on_test_start(self):
-        if self.test_cfg.compress and hasattr(self.encoder, "update_codecs"):
-            self.encoder.update_codecs(force=True)
+        if self.test_cfg.compress:
+            # Pin cuDNN deterministic so h_s convolutions produce bit-exact
+            # outputs across calls; otherwise ~1-ULP noise in scales_hat flips
+            # build_indexes() integer CDF indices near scale_table quantization
+            # boundaries, corrupting the compress<->decompress round-trip and
+            # exploding x_hat after _synthesis. Diagnosed in dbg6.
+            torch.backends.cudnn.deterministic = True
+            torch.backends.cudnn.benchmark = False
+            if hasattr(self.encoder, "update_codecs"):
+                self.encoder.update_codecs(force=True, update_quantiles=True)
 
     @staticmethod
     def _estimated_bits_num_bits(estimated_bits):
@@ -824,6 +832,8 @@ class ModelWrapper(LightningModule):
         torch.nn.utils.clip_grad_norm_(aux_params, 1.0)
         self._aux_optimizer.step()
         self.log("loss/aux", aux_loss.detach(), prog_bar=False)
+        if self.global_rank == 0 and self.global_step % self.train_cfg.print_log_every_n_steps == 0:
+            print(f"aux step[{self.global_step}] ; loss/aux = {aux_loss.detach().item():.6f}")
 
     def _split_codec_params(self):
         codec_params, aux_params, generator_params = [], [], []

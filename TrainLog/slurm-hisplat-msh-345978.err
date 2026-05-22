@@ -1,0 +1,170 @@
+/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/__init__.py:41: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+xFormers not available
+FLASH ATTENTION2 not available
+xFormers not available
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 1 processes
+----------------------------------------------------------------------------------------------------
+
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name      | Type                     | Params | Mode 
+---------------------------------------------------------------
+0 | encoder   | EncoderCostVolumePyramid | 204 M  | train
+1 | decoder   | DecoderSplattingCUDA     | 0      | train
+2 | losses    | ModuleList               | 0      | train
+3 | rate_loss | RateLoss                 | 0      | train
+---------------------------------------------------------------
+118 M     Trainable params
+86.6 M    Non-trainable params
+204 M     Total params
+819.241   Total estimated model params size (MB)
+[W reducer.cpp:1346] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+Error executing job with overrides: ['+experiment=re10k', 'mode=train', 'device=1', 'dataset.roots=[/data3/local_datasets/re10k]', 'data_loader.train.batch_size=2', 'data_loader.train.num_workers=8', 'output_dir=phase2_sweep_l0.001_warmstart_anchor5k_70k_resume40k', 'trainer.max_steps=70000', 'trainer.val_check_interval=5000', 'trainer.check_val_every_n_epoch=1', 'checkpointing.load=outputs/phase2_sweep_l0.001_warmstart_anchor5k_70k/checkpoints/epoch_1-step_40000.ckpt', 'checkpointing.resume=false', 'checkpointing.every_n_train_steps=2500', 'checkpointing.save_top_k=-1', 'model.encoder.gaussian_adapter.sh_degree=4', 'model.encoder.use_gauss_feature_compression=true', 'model.encoder.codec_stage_N=[192,192,192]', 'model.encoder.codec_stage_M=[320,320,320]', 'model.encoder.codec_stage_depth=[2,4,4]', 'model.encoder.codec_train_mode=full', 'model.encoder.codec_input=proj', 'train.phase=warmup', 'train.lambda_rd=0.001', 'train.lr_codec=1.0e-4', 'train.lr_aux=1.0e-3', 'train.lr_generator=2.0e-5', 'train.lr_codec_cooldown=2.0e-5', 'train.lr_generator_cooldown=5.0e-6', 'train.codec_lr_warmup_steps=200', 'train.codec_lr_warmup_start_factor=0.1', 'train.codec_recon_weight=0.0', 'train.codec_warmup_bypass=false', 'test.compress=false', 'wandb.mode=disabled', 'wandb.name=hisplat_msh_warmup_lmd0.001', 'wandb.mode=disabled']
+Traceback (most recent call last):
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/ceph_data/clue9986/HiSplatMSH/src/main.py", line 189, in <module>
+    train()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 223, in run_and_report
+    raise ex
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/hydra.py", line 132, in run
+    _ = ret.return_value
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/core/utils.py", line 260, in return_value
+    raise self._return_value
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "/ceph_data/clue9986/HiSplatMSH/src/main.py", line 174, in train
+    trainer.fit(model_wrapper, datamodule=data_module, ckpt_path=fit_ckpt_path)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 543, in fit
+    call._call_and_handle_interrupt(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 43, in _call_and_handle_interrupt
+    return trainer.strategy.launcher.launch(trainer_fn, *args, trainer=trainer, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/strategies/launchers/subprocess_script.py", line 105, in launch
+    return function(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 579, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 986, in _run
+    results = self._run_stage()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1030, in _run_stage
+    self.fit_loop.run()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py", line 205, in run
+    self.advance()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py", line 363, in advance
+    self.epoch_loop.run(self._data_fetcher)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/loops/training_epoch_loop.py", line 140, in run
+    self.advance(data_fetcher)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/loops/training_epoch_loop.py", line 250, in advance
+    batch_output = self.automatic_optimization.run(trainer.optimizers[0], batch_idx, kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/loops/optimization/automatic.py", line 190, in run
+    self._optimizer_step(batch_idx, closure)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/loops/optimization/automatic.py", line 268, in _optimizer_step
+    call._call_lightning_module_hook(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 159, in _call_lightning_module_hook
+    output = fn(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/core/module.py", line 1308, in optimizer_step
+    optimizer.step(closure=optimizer_closure)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/core/optimizer.py", line 153, in step
+    step_output = self._strategy.optimizer_step(self._optimizer, closure, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/strategies/ddp.py", line 270, in optimizer_step
+    optimizer_output = super().optimizer_step(optimizer, closure, model, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 238, in optimizer_step
+    return self.precision_plugin.optimizer_step(optimizer, model=model, closure=closure, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/plugins/precision/precision.py", line 122, in optimizer_step
+    return optimizer.step(closure=closure, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/optim/lr_scheduler.py", line 68, in wrapper
+    return wrapped(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/optim/optimizer.py", line 373, in wrapper
+    out = func(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/optim/optimizer.py", line 76, in _use_grad
+    ret = func(self, *args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/optim/adam.py", line 143, in step
+    loss = closure()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/plugins/precision/precision.py", line 108, in _wrap_closure
+    closure_result = closure()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/loops/optimization/automatic.py", line 144, in __call__
+    self._result = self.closure(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/loops/optimization/automatic.py", line 129, in closure
+    step_output = self._step_fn()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/loops/optimization/automatic.py", line 317, in _training_step
+    training_step_output = call._call_strategy_hook(trainer, "training_step", *kwargs.values())
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 311, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 389, in training_step
+    return self._forward_redirection(self.model, self.lightning_module, "training_step", *args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 640, in __call__
+    wrapper_output = wrapper_module(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1519, in forward
+    else self._run_ddp_forward(*inputs, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1355, in _run_ddp_forward
+    return self.module(*inputs, **kwargs)  # type: ignore[index]
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 633, in wrapped_forward
+    out = method(*_args, **_kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/jaxtyping/_decorator.py", line 457, in wrapped_fn
+    out = fn(*args, **kwargs)
+  File "/ceph_data/clue9986/HiSplatMSH/src/model/model_wrapper.py", line 176, in training_step
+    gaussian_dict, result_dict = self.encoder(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/jaxtyping/_decorator.py", line 457, in wrapped_fn
+    out = fn(*args, **kwargs)
+  File "/ceph_data/clue9986/HiSplatMSH/src/model/encoder/encoder_costvolume_pyramid.py", line 148, in forward
+    return self._run_pyramid(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/jaxtyping/_decorator.py", line 457, in wrapped_fn
+    out = fn(*args, **kwargs)
+  File "/ceph_data/clue9986/HiSplatMSH/src/model/encoder/encoder_costvolume_pyramid.py", line 178, in _run_pyramid
+    return self.depth_predictor(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/jaxtyping/_decorator.py", line 457, in wrapped_fn
+    out = fn(*args, **kwargs)
+  File "/ceph_data/clue9986/HiSplatMSH/src/model/encoder/costvolume/depth_predictor_multiview.py", line 248, in forward
+    depths, densities, raw_gaussians, coarse_disps, pdf_max, codec_info = depth_predictor(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/jaxtyping/_decorator.py", line 457, in wrapped_fn
+    out = fn(*args, **kwargs)
+  File "/ceph_data/clue9986/HiSplatMSH/src/model/encoder/costvolume/depth_predictor_multiview.py", line 727, in forward
+    proj_feat_in_fullres, codec_info = self._apply_codec(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/jaxtyping/_decorator.py", line 457, in wrapped_fn
+    out = fn(*args, **kwargs)
+  File "/ceph_data/clue9986/HiSplatMSH/src/model/encoder/costvolume/depth_predictor_multiview.py", line 593, in _apply_codec
+    self._check_codec_output(x_hat, codec_mode)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/jaxtyping/_decorator.py", line 457, in wrapped_fn
+    out = fn(*args, **kwargs)
+  File "/ceph_data/clue9986/HiSplatMSH/src/model/encoder/costvolume/depth_predictor_multiview.py", line 646, in _check_codec_output
+    raise FloatingPointError(
+FloatingPointError: Stage 2 codec x_hat magnitude exploded in forward/full mode: 13428.2.

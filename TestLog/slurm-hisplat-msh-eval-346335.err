@@ -1,0 +1,24 @@
+/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/__init__.py:41: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+xFormers not available
+FLASH ATTENTION2 not available
+xFormers not available
+rm: cannot remove '/ceph_data/clue9986/HiSplatMSH/latest-run': No such file or directory
+ln: failed to create symbolic link '/ceph_data/clue9986/HiSplatMSH/latest-run': File exists
+rm: cannot remove 'outputs/local/projection_0': No such file or directory
+rm: cannot remove 'outputs/local/projection_2': No such file or directory
+rm: cannot remove 'outputs/local/comparison_1': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_053017.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_038017.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_043017.png': No such file or directory
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 1 processes
+----------------------------------------------------------------------------------------------------
+
+Restoring states from the checkpoint path at /ceph_data/clue9986/HiSplatMSH/outputs/phase2_recon0.1_l0.0_warmstart_anchor5k_70k/checkpoints/epoch_2-step_70000.ckpt
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Loaded model weights from the checkpoint at /ceph_data/clue9986/HiSplatMSH/outputs/phase2_recon0.1_l0.0_warmstart_anchor5k_70k/checkpoints/epoch_2-step_70000.ckpt

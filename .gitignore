@@ -1,1 +1,3 @@
 MVSplat_Vanilla/
+__pycache__/
+*.pyc
