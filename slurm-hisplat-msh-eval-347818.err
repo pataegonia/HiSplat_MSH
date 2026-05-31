@@ -1,0 +1,126 @@
+/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/__init__.py:41: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+xFormers not available
+FLASH ATTENTION2 not available
+xFormers not available
+rm: cannot remove '/ceph_data/clue9986/HiSplatMSH/latest-run': No such file or directory
+rm: cannot remove 'outputs/local/depth_compare/00_020000.png': No such file or directory
+rm: cannot remove 'outputs/local/depth_compare/00_058017.png': No such file or directory
+rm: cannot remove 'outputs/local/depth_compare/00_015000.png': No such file or directory
+rm: cannot remove 'outputs/local/depth_compare/00_010000.png': No such file or directory
+rm: cannot remove 'outputs/local/depth_compare/00_048017.png': No such file or directory
+rm: cannot remove 'outputs/local/depth_compare/00_025000.png': No such file or directory
+rm: cannot remove 'outputs/local/depth_compare/00_063017.png': No such file or directory
+rm: cannot remove 'outputs/local/depth_compare/00_030000.png': No such file or directory
+rm: cannot remove 'outputs/local/depth_compare/00_005000.png': No such file or directory
+rm: cannot remove 'outputs/local/depth_compare/00_053017.png': No such file or directory
+rm: cannot remove 'outputs/local/depth_compare/00_038017.png': No such file or directory
+rm: cannot remove 'outputs/local/depth_compare/00_043017.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_010000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_048017.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_025000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_063017.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_030000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_005000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_053017.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_038017.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_043017.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_0/00_010000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_0/00_048017.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_0/00_025000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_0/00_063017.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_0/00_030000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_0/00_005000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_0/00_053017.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_0/00_038017.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_0/00_043017.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_2/00_058017.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_2/00_015000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_2/00_010000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_2/00_048017.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_2/00_025000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_2/00_063017.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_2/00_030000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_2/00_005000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_2/00_053017.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_2/00_038017.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_2/00_043017.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_058017.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_015000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_010000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_048017.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_025000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_063017.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_030000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_005000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_053017.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_038017.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_043017.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_1/00_030000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_1/00_005000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_1/00_053017.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_1/00_038017.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_1/00_043017.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_010000.png': No such file or directory
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 1 processes
+----------------------------------------------------------------------------------------------------
+
+Restoring states from the checkpoint path at /ceph_data/clue9986/HiSplatMSH/outputs/phase2_sweep_l0.0005_warmstart_anchor5k_70k_recon0.01/checkpoints/epoch_2-step_70000.ckpt
+Error executing job with overrides: ['+experiment=re10k', 'mode=test', 'device=1', 'dataset.roots=[/data3/local_datasets/re10k]', 'data_loader.test.num_workers=8', 'output_dir=eval_sweep_l0.0005_warmstart70k_recon0.01_compress', 'checkpointing.load=/ceph_data/clue9986/HiSplatMSH/outputs/phase2_sweep_l0.0005_warmstart_anchor5k_70k_recon0.01/checkpoints/epoch_2-step_70000.ckpt', 'model.encoder.gaussian_adapter.sh_degree=4', 'model.encoder.use_gauss_feature_compression=true', 'model.encoder.codec_stage_N=[192,192,192]', 'model.encoder.codec_stage_M=[320,320,320]', 'model.encoder.codec_stage_depth=[2,4,4]', 'model.encoder.codec_train_mode=full', 'model.encoder.codec_input=proj', 'test.compress=true', 'test.compute_scores=true', 'wandb.mode=offline', 'wandb.name=eval_sweep_l0.0005_warmstart70k_recon0.01_compress', 'wandb.mode=disabled']
+Traceback (most recent call last):
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/ceph_data/clue9986/HiSplatMSH/src/main.py", line 189, in <module>
+    train()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 223, in run_and_report
+    raise ex
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/hydra.py", line 132, in run
+    _ = ret.return_value
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/core/utils.py", line 260, in return_value
+    raise self._return_value
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "/ceph_data/clue9986/HiSplatMSH/src/main.py", line 176, in train
+    trainer.test(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 753, in test
+    return call._call_and_handle_interrupt(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 43, in _call_and_handle_interrupt
+    return trainer.strategy.launcher.launch(trainer_fn, *args, trainer=trainer, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/strategies/launchers/subprocess_script.py", line 105, in launch
+    return function(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 793, in _test_impl
+    results = self._run(model, ckpt_path=ckpt_path)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 955, in _run
+    self._checkpoint_connector._restore_modules_and_callbacks(ckpt_path)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/connectors/checkpoint_connector.py", line 397, in _restore_modules_and_callbacks
+    self.resume_start(checkpoint_path)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/connectors/checkpoint_connector.py", line 79, in resume_start
+    loaded_checkpoint = self.trainer.strategy.load_checkpoint(checkpoint_path)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 367, in load_checkpoint
+    return self.checkpoint_io.load_checkpoint(checkpoint_path)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/plugins/io/torch_io.py", line 83, in load_checkpoint
+    return pl_load(path, map_location=map_location)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/utilities/cloud_io.py", line 57, in _load
+    return torch.load(f, map_location=map_location)  # type: ignore[arg-type]
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/serialization.py", line 1028, in load
+    return _legacy_load(opened_file, map_location, pickle_module, **pickle_load_args)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/torch/serialization.py", line 1246, in _legacy_load
+    magic_number = pickle_module.load(f, **pickle_load_args)
+EOFError: Ran out of input

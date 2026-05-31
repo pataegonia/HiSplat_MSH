@@ -1,0 +1,24 @@
+============================================
+HiSplat + per-stage MSH eval
+Repo: /ceph_data/clue9986/HiSplatMSH
+Dataset root: /data3/local_datasets/re10k
+Checkpoint: /ceph_data/clue9986/HiSplatMSH/outputs/phase2_sweep_l0.0003_warmstart_anchor5k_70k_recon0.01/checkpoints/epoch_2-step_70000.ckpt
+Output: eval_sweep_l0.0003_warmstart70k_recon0.01_compress
+W&B name: eval_sweep_l0.0003_warmstart70k_recon0.01_compress
+SH degree: 4
+Codec stage N: [192,192,192]
+Codec stage M: [320,320,320]
+Codec stage depth: [2,4,4]
+Codec train mode: full
+Codec input: proj
+Test compress: true
+Extra Hydra args: wandb.mode=disabled
+============================================
+[36mSaving outputs to /ceph_data/clue9986/HiSplatMSH/outputs/eval_sweep_l0.0003_warmstart70k_recon0.01_compress.[39m
+GPU number is 1
+missing keys:[]
+unexpected keys:[]
+error msgs:[]
+!!!Successfully load the DINOV2 ckpt from ./checkpoints/dinov2_vitb14_pretrain.pth
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+Loading model from: /ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lpips/weights/v0.1/vgg.pth

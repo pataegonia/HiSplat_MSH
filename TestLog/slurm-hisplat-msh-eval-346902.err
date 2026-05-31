@@ -1,0 +1,125 @@
+/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/__init__.py:41: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+xFormers not available
+FLASH ATTENTION2 not available
+xFormers not available
+rm: cannot remove '/ceph_data/clue9986/HiSplatMSH/latest-run': No such file or directory
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 1 processes
+----------------------------------------------------------------------------------------------------
+
+Error executing job with overrides: ['+experiment=re10k', 'mode=test', 'device=1', 'dataset.roots=[/data3/local_datasets/re10k]', 'data_loader.test.num_workers=8', 'output_dir=eval_recon1.0_cont_s15000_compress', 'checkpointing.load=/ceph_data/clue9986/HiSplatMSH/outputs/phase2_recon1.0_cont_70k_to_100k/checkpoints/epoch_0-step_15000.ckpt', 'model.encoder.gaussian_adapter.sh_degree=4', 'model.encoder.use_gauss_feature_compression=true', 'model.encoder.codec_stage_N=[192,192,192]', 'model.encoder.codec_stage_M=[320,320,320]', 'model.encoder.codec_stage_depth=[2,4,4]', 'model.encoder.codec_train_mode=full', 'model.encoder.codec_input=proj', 'test.compress=true', 'test.compute_scores=true', 'wandb.mode=offline', 'wandb.name=eval_recon1.0_cont_s15000_compress']
+Traceback (most recent call last):
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/ceph_data/clue9986/HiSplatMSH/src/main.py", line 189, in <module>
+    train()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 223, in run_and_report
+    raise ex
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/_internal/hydra.py", line 132, in run
+    _ = ret.return_value
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/core/utils.py", line 260, in return_value
+    raise self._return_value
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "/ceph_data/clue9986/HiSplatMSH/src/main.py", line 176, in train
+    trainer.test(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 753, in test
+    return call._call_and_handle_interrupt(
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 43, in _call_and_handle_interrupt
+    return trainer.strategy.launcher.launch(trainer_fn, *args, trainer=trainer, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/strategies/launchers/subprocess_script.py", line 105, in launch
+    return function(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 793, in _test_impl
+    results = self._run(model, ckpt_path=ckpt_path)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 948, in _run
+    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 88, in _call_setup_hook
+    if hasattr(logger, "experiment"):
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/loggers/logger.py", line 118, in experiment
+    return fn(self)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/pytorch_lightning/loggers/wandb.py", line 406, in experiment
+    self._experiment = wandb.init(**self._wandb_init)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/sdk/wandb_init.py", line 1185, in init
+    wandb._sentry.reraise(e)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/analytics/sentry.py", line 155, in reraise
+    raise exc.with_traceback(sys.exc_info()[2])
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/sdk/wandb_init.py", line 1170, in init
+    wi.setup(kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/sdk/wandb_init.py", line 189, in setup
+    self._wl = wandb_setup.setup(settings=setup_settings)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/sdk/wandb_setup.py", line 327, in setup
+    ret = _setup(settings=settings)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/sdk/wandb_setup.py", line 320, in _setup
+    wl = _WandbSetup(settings=settings)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/sdk/wandb_setup.py", line 303, in __init__
+    _WandbSetup._instance = _WandbSetup__WandbSetup(settings=settings, pid=pid)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/sdk/wandb_setup.py", line 114, in __init__
+    self._setup()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/sdk/wandb_setup.py", line 250, in _setup
+    self._setup_manager()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/sdk/wandb_setup.py", line 277, in _setup_manager
+    self._manager = wandb_manager._Manager(settings=self._settings)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/sdk/wandb_manager.py", line 139, in __init__
+    self._service.start()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/sdk/service/service.py", line 253, in start
+    self._launch_server()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/sdk/service/service.py", line 247, in _launch_server
+    _sentry.reraise(e)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/analytics/sentry.py", line 155, in reraise
+    raise exc.with_traceback(sys.exc_info()[2])
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/sdk/service/service.py", line 245, in _launch_server
+    self._wait_for_ports(fname, proc=internal_proc)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/sdk/service/service.py", line 134, in _wait_for_ports
+    raise ServiceStartTimeoutError(
+wandb.sdk.service.service.ServiceStartTimeoutError: Timed out waiting for wandb service to start after 30.0 seconds. Try increasing the timeout with the `_service_wait` setting.
+Traceback (most recent call last):
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/__main__.py", line 3, in <module>
+    cli.cli(prog_name="python -m wandb")
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/click/core.py", line 1485, in __call__
+    return self.main(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/click/core.py", line 1406, in main
+    rv = self.invoke(ctx)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/click/core.py", line 1873, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/click/core.py", line 1269, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/click/core.py", line 824, in invoke
+    return callback(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/cli/cli.py", line 108, in wrapper
+    return func(*args, **kwargs)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/cli/cli.py", line 292, in service
+    server.serve()
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/sdk/service/server.py", line 114, in serve
+    self._inform_used_ports(sock_port=sock_port)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/sdk/service/server.py", line 52, in _inform_used_ports
+    pf.write(self._port_fname)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/wandb/sdk/service/port_file.py", line 21, in write
+    f = tempfile.NamedTemporaryFile(prefix=bname, dir=dname, mode="w", delete=False)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/tempfile.py", line 575, in NamedTemporaryFile
+    file = _io.open(dir, mode, buffering=buffering,
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/tempfile.py", line 572, in opener
+    fd, name = _mkstemp_inner(dir, prefix, suffix, flags, output_type)
+  File "/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/tempfile.py", line 256, in _mkstemp_inner
+    fd = _os.open(file, flags, 0o600)
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpaz4zh28d/port-3302108.txt0sajw071'

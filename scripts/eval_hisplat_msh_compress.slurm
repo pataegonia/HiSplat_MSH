@@ -5,7 +5,7 @@
 #SBATCH --cpus-per-gpu=8
 #SBATCH --mem-per-gpu=48G
 #SBATCH -p batch_ugrad
-#SBATCH -w ariel-v11
+#SBATCH -w ariel-v12
 #SBATCH -t 1-00:00:00
 #SBATCH -o slurm-hisplat-msh-eval-%A.out
 #SBATCH -e slurm-hisplat-msh-eval-%A.err

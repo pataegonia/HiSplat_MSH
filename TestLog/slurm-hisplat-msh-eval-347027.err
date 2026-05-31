@@ -1,0 +1,174 @@
+/ceph_data/clue9986/anaconda3/envs/hisplat/lib/python3.10/site-packages/lightning_fabric/__init__.py:41: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+xFormers not available
+FLASH ATTENTION2 not available
+xFormers not available
+rm: cannot remove '/ceph_data/clue9986/HiSplatMSH/latest-run': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_018000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_026000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_016000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_030000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_017000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_005000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_021000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_014000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_024000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_002000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_028000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_007000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_019000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_001000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_004000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_013000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_2/00_006000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_020000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_015000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_029000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_010000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_022000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_023000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_011000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_027000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_012000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_025000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_003000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_008000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_018000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_026000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_016000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_030000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_017000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_005000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_021000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_014000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_024000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_002000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_028000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_007000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_019000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_001000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_004000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_013000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_0/00_006000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_020000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_027000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_012000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_025000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_003000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_008000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_018000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_026000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_016000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_030000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_017000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_005000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_021000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_014000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_024000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_002000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_028000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_007000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_019000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_001000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_004000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_013000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_0/00_006000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_2/00_029000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_2/00_010000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_020000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_015000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_029000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_010000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_022000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_023000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_011000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_027000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_012000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_025000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_003000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_008000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_018000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_026000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_016000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_030000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_017000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_005000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_021000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_014000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_024000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_002000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_028000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_007000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_019000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_001000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_004000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_013000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_2/00_006000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_029000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_010000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_022000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_023000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_011000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_027000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_012000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_025000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_003000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_008000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_018000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_026000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_016000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_030000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_017000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_005000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_021000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_014000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_024000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_002000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_028000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_007000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_019000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_001000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_004000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_013000.png': No such file or directory
+rm: cannot remove 'outputs/local/cameras_1/00_006000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_1/00_005000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_1/00_021000.png': No such file or directory
+rm: cannot remove 'outputs/local/comparison_1/00_014000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_029000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_010000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_022000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_023000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_011000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_027000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_012000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_025000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_003000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_008000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_018000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_026000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_016000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_030000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_017000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_005000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_021000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_014000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_024000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_002000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_028000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_007000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_019000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_001000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_004000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_013000.png': No such file or directory
+rm: cannot remove 'outputs/local/projection_1/00_006000.png': No such file or directory
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 1 processes
+----------------------------------------------------------------------------------------------------
+
+Restoring states from the checkpoint path at /ceph_data/clue9986/HiSplatMSH/outputs/phase2_recon1.0_cont_70k_to_100k/checkpoints/epoch_0-step_15000.ckpt
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Loaded model weights from the checkpoint at /ceph_data/clue9986/HiSplatMSH/outputs/phase2_recon1.0_cont_70k_to_100k/checkpoints/epoch_0-step_15000.ckpt

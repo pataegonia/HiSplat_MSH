@@ -1,0 +1,58 @@
+category,run_name,recon_w,lambda,train_steps,psnr,ssim,lpips,compressed_kb,kb_type,eval_jid,note
+baseline_ceiling,vanilla_hisplat,,,,27.194,0.8817,0.1170,,none,344145,no codec; horizontal ceiling line
+main_rd,warmstart_l0_cont100k,0.3,0.0,100000,27.014,0.8784,0.1217,1061.0,real,346719,headline lambda=0 point (cont 70k->100k); also matches bypass eval
+main_rd,warmstart_l0.0001_recon0.01,0.01,0.0001,65000,26.912,0.8765,0.1230,119.55,real,347859,safety; 70k ckpt save failed so 65k ckpt used
+main_rd,warmstart_l0.0003_recon0.01,0.01,0.0003,65000,26.902,0.8764,0.1234,87.87,real,347860,safety; 70k ckpt save failed so 65k ckpt used
+main_rd,warmstart_l0.0005_recon0.01,0.01,0.0005,65000,26.893,0.8762,0.1237,72.51,real,347861,safety; 70k ckpt save failed so 65k ckpt used
+main_rd,warmstart_l0.0007_recon0.01,0.01,0.0007,70000,26.892,0.8763,0.1238,62.23,real,347552,safety; original no-safety l=0.0007 (347178) exploded at step 5452
+main_rd,warmstart_l0.001_recon0.01,0.01,0.001,70000,26.878,0.8761,0.1243,51.91,real,346720,l0.001 retrain with recon_w=0.01+LR_AUX=1e-3 safety (F7 fragile zone defeated)
+main_rd,warmstart_l0.003,0.0,0.003,70000,26.542,0.8698,0.1327,10.43,real,346329,
+main_rd,warmstart_l0.007,0.0,0.007,70000,26.428,0.8673,0.1359,6.64,real,346330,
+main_rd,warmstart_l0.012,0.0,0.012,70000,26.354,0.8658,0.1379,4.94,real,346331,
+main_rd,warmstart_l0.02,0.0,0.02,70000,26.269,0.8642,0.1404,3.64,real,346332,
+comparison_50k_fresh,fresh_l0,0.0,0.0,50000,26.616,0.8707,0.1300,491.62,real,345537,F4
+comparison_50k_fresh,fresh_l0.001,0.0,0.001,50000,26.500,0.8687,0.1336,16.96,real,345554,F4
+comparison_50k_fresh,fresh_l0.003,0.0,0.003,50000,26.415,0.8669,0.1360,9.45,real,345534,F4
+comparison_50k_fresh,fresh_l0.007,0.0,0.007,50000,26.350,0.8657,0.1378,6.25,real,345555,F4
+comparison_50k_fresh,fresh_l0.012,0.0,0.012,50000,26.199,0.8630,0.1418,3.23,real,345553,F4
+comparison_50k_fresh,fresh_l0.02,0.0,0.02,50000,26.085,0.8614,0.1445,1.91,real,345552,F4
+recon_w_ablation,warmstart_recon0.0,0.0,0.0,70000,26.835,0.8753,0.1244,640.5,real,346327,Figure 2 baseline
+recon_w_ablation,warmstart_recon0.01,0.01,0.0,70000,26.911,0.8767,0.1227,893.1,real,346333,
+recon_w_ablation,warmstart_recon0.03,0.03,0.0,70000,26.947,0.8773,0.1223,957.9,real,346334,
+recon_w_ablation,warmstart_recon0.1,0.1,0.0,70000,26.974,0.8778,0.1221,1008.8,real,346335,
+recon_w_ablation,warmstart_recon0.3,0.3,0.0,70000,26.992,0.8780,0.1222,1040.1,real,346336,F6 peak (70k)
+recon_w_ablation,warmstart_recon1.0_fresh70k,1.0,0.0,70000,27.002,0.8782,0.1224,1059.0,real,346755,6th point (J1 fresh)
+cont_recon0.3,cont_step70k_baseline,0.3,0.0,70000,26.992,0.8780,0.1222,1040.0,real,346336,baseline = F6 peak
+cont_recon0.3,cont_step77.5k,0.3,0.0,77500,27.012,0.8784,0.1218,1047.0,real,346716,J2 cont 70k->100k
+cont_recon0.3,cont_step85k,0.3,0.0,85000,27.010,0.8783,0.1219,1052.0,real,346717,
+cont_recon0.3,cont_step92.5k,0.3,0.0,92500,27.013,0.8783,0.1218,1057.0,real,346718,
+cont_recon0.3,cont_step100k,0.3,0.0,100000,27.014,0.8784,0.1217,1061.0,real,346719,J2 cont peak; balanced headline candidate
+cont_recon1.0,cont_step70k_baseline,1.0,0.0,70000,27.002,0.8782,0.1224,1059.0,real,346755,baseline = J1 fresh 70k
+cont_recon1.0,cont_step77.5k,1.0,0.0,77500,27.017,0.8785,0.1220,1066.0,real,347026,bonus recon_w=1.0 cont
+cont_recon1.0,cont_step85k,1.0,0.0,85000,27.016,0.8784,0.1220,1072.0,real,347027,
+cont_recon1.0,cont_step92.5k,1.0,0.0,92500,27.019,0.8784,0.1219,1077.0,real,347028,
+cont_recon1.0,cont_step100k,1.0,0.0,100000,27.019,0.8785,0.1219,1081.0,real,347029,balanced headline alternative
+polish_recon0.3,polish_step0_baseline,0.3,0.0,100000,27.014,0.8784,0.1217,1061.0,real,346719,baseline = recon0.3 cont 100k
+polish_recon0.3,polish_step1k,0.3,0.0,101000,27.019,0.8785,0.1220,1061.0,real,346774,B polish (LPIPS weight 0.01)
+polish_recon0.3,polish_step2k,0.3,0.0,102000,27.018,0.8784,0.1221,1061.0,real,346775,
+polish_recon0.3,polish_step3k,0.3,0.0,103000,27.021,0.8785,0.1221,1061.0,real,346776,
+polish_recon0.3,polish_step4k,0.3,0.0,104000,27.025,0.8785,0.1220,1062.0,real,346777,*** PSNR PEAK headline (27.025 dB) ***
+polish_recon0.3,polish_step5k,0.3,0.0,105000,27.021,0.8784,0.1221,1062.0,real,346778,saturation past step 4k
+polish_recon1.0,polish_step1k,1.0,0.0,101000,27.022,0.8785,0.1220,1081.0,real,347126,polish on recon_w=1.0 cont 100k
+polish_recon1.0,polish_step2k,1.0,0.0,102000,27.021,0.8785,0.1221,1082.0,real,347127,
+polish_recon1.0,polish_step3k,1.0,0.0,103000,27.022,0.8785,0.1221,1082.0,real,347128,
+polish_recon1.0,polish_step4k,1.0,0.0,104000,27.026,0.8785,0.1221,1083.0,real,347129,marginal +0.001 vs polish_recon0.3 peak; KB +21 so 0.3 wins efficiency
+polish_recon1.0,polish_step5k,1.0,0.0,105000,27.023,0.8785,0.1221,1083.0,real,347130,
+anchor_swap_supplementary,A_l0.001_cont20k,0.01,0.001,120000,26.982,0.8779,0.1223,129.8,real,346828,cont 20k from 100k anchor; same KB old curve dominates
+anchor_swap_supplementary,A_l0.003_cont20k,0.01,0.003,120000,26.922,0.8768,0.1245,87.9,real,346829,
+anchor_swap_supplementary,A_l0.007_cont20k,0.01,0.007,120000,26.835,0.8752,0.1276,60.4,real,346830,
+anchor_swap_supplementary,A_l0.012_cont20k,0.01,0.012,120000,26.739,0.8732,0.1305,46.4,real,346831,
+anchor_swap_supplementary,A_l0.02_cont20k,0.01,0.02,120000,26.578,0.8702,0.1351,35.0,real,346832,
+low_lambda_no_safety,warmstart_l0.0001_recon0,0.0,0.0001,70000,26.810,0.8747,0.1255,59.11,real,347473,no-safety sweep; dominated by safety l=0.0007 (F11)
+low_lambda_no_safety,warmstart_l0.0003_recon0,0.0,0.0003,70000,26.785,0.8742,0.1265,38.47,real,347474,no-safety sweep; F11 dominated
+low_lambda_no_safety,warmstart_l0.0005_recon0,0.0,0.0005,70000,26.772,0.8738,0.1271,30.90,real,347476,no-safety sweep; F11 dominated
+bypass_diagnostic,bypass_eval_recon0.3_cont100k,0.3,0.0,100000,27.014,0.8784,0.1217,,none,346762,TEST_COMPRESS=false + CODEC_EVAL_MODE=bypass; identical to compressed (F10): quantization residual = 0
+rescue,anchor_M320_d244,1.0,0.0,5000,26.916,0.8768,0.1248,,estimated,344152,near-lossless start ckpt; gap -0.278 dB from vanilla
+rescue,rescue1_d244_longer35k,1.0,0.0,35000,26.974,,,~1200,estimated,344560+,arm1 = training duration (F1)
+rescue,rescue2_d222_depth_lever,1.0,0.0,30000,27.162,0.8814,0.1178,~11000,estimated,344589+,arm2 = depth lever; nearly reaches vanilla but rate ~9x (F1 main finding)
+rescue,rescue3_M512_capacity,1.0,0.0,30000,27.062,,,~1900,estimated,344597+,arm3 = capacity (F1)

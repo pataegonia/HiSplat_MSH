@@ -1,0 +1,11 @@
+lambda,psnr,ssim,lpips,compressed_kb,setup,note
+0.02,26.269,0.8642,0.1404,3.64,no_safety_70k,recon_w=0
+0.012,26.354,0.8658,0.1379,4.94,no_safety_70k,recon_w=0
+0.007,26.428,0.8673,0.1359,6.64,no_safety_70k,recon_w=0
+0.003,26.542,0.8698,0.1327,10.43,no_safety_70k,recon_w=0
+0.001,26.878,0.8761,0.1243,51.91,safety_70k,recon_w=0.01+LR_AUX=1e-3
+0.0007,26.892,0.8763,0.1238,62.23,safety_70k,recon_w=0.01+LR_AUX=1e-3
+0.0005,26.893,0.8762,0.1237,72.51,safety_65k,recon_w=0.01; 65k ckpt
+0.0003,26.902,0.8764,0.1234,87.87,safety_65k,recon_w=0.01; 65k ckpt
+0.0001,26.912,0.8765,0.1230,119.55,safety_65k,recon_w=0.01; 65k ckpt
+0.0,27.014,0.8784,0.1217,1061.0,cont100k_recon0.3,headline λ=0 via cont 70k->100k
