@@ -5,7 +5,7 @@
 #SBATCH --cpus-per-gpu=8
 #SBATCH --mem-per-gpu=48G
 #SBATCH -p batch_ugrad
-#SBATCH -w ariel-v12
+#SBATCH -w ariel-v11
 #SBATCH -t 6-00:00:00
 #SBATCH -o slurm-hisplat-msh-%A.out
 #SBATCH -e slurm-hisplat-msh-%A.err
@@ -37,6 +37,7 @@ CONDA_ENV_NAME="${CONDA_ENV_NAME:-hisplat}"
 DATASET_ROOT="${DATASET_ROOT:-/data3/local_datasets/re10k}"
 PRETRAINED_CKPT="${PRETRAINED_CKPT:-checkpoints/hisplat_re10k.ckpt}"
 PHASE="${PHASE:-1}" # 1|warmup, 2|finetune, 3|cooldown
+STAGE_SCHEDULE="${STAGE_SCHEDULE:-joint}" # joint|stage0_only|stage1_only|stage2_only
 MAX_STEPS="${MAX_STEPS:-50000}"
 BATCH_SIZE_PER_GPU="${BATCH_SIZE_PER_GPU:-2}"
 VAL_INTERVAL="${VAL_INTERVAL:-1000}"
@@ -54,6 +55,8 @@ CODEC_LR_WARMUP_STEPS="${CODEC_LR_WARMUP_STEPS:-200}"
 CODEC_LR_WARMUP_START_FACTOR="${CODEC_LR_WARMUP_START_FACTOR:-0.1}"
 CODEC_RECON_WEIGHT="${CODEC_RECON_WEIGHT:-1.0}"
 CODEC_WARMUP_BYPASS="${CODEC_WARMUP_BYPASS:-true}"
+TRUNCATION_AUG_PROBS="${TRUNCATION_AUG_PROBS:-null}"
+LAMBDA_RD_PER_STAGE="${LAMBDA_RD_PER_STAGE:-null}"
 CODEC_INPUT="${CODEC_INPUT:-proj}" # proj|stack
 CODEC_STAGE_N="${CODEC_STAGE_N:-[192,192,192]}"
 CODEC_STAGE_M="${CODEC_STAGE_M:-[320,320,320]}"
@@ -84,6 +87,16 @@ if awk -v x="${LAMBDA_RD}" 'BEGIN { exit !(x + 0 > 0) }'; then
             ;;
         *)
             echo "ERROR: LAMBDA_RD=${LAMBDA_RD} > 0 requires CODEC_TRAIN_MODE=full (got ${CODEC_TRAIN_MODE}); the rate term is silently dropped otherwise."
+            exit 1
+            ;;
+    esac
+fi
+if [[ "${LAMBDA_RD_PER_STAGE}" != "null" && "${LAMBDA_RD_PER_STAGE}" != "None" ]]; then
+    case "${CODEC_TRAIN_MODE}" in
+        full|entropy)
+            ;;
+        *)
+            echo "ERROR: LAMBDA_RD_PER_STAGE=${LAMBDA_RD_PER_STAGE} requires CODEC_TRAIN_MODE=full (got ${CODEC_TRAIN_MODE})."
             exit 1
             ;;
     esac
@@ -137,6 +150,7 @@ case "${PHASE}" in
         exit 1
         ;;
 esac
+WANDB_NAME="${WANDB_NAME:-hisplat_msh_${TRAIN_PHASE}_lmd${LAMBDA_RD}}"
 
 # ---- Conda ----
 if command -v conda >/dev/null 2>&1; then
@@ -161,6 +175,7 @@ echo "============================================"
 echo "HiSplat + per-stage MSH training"
 echo "Repo: ${REPO_DIR}"
 echo "Phase: ${TRAIN_PHASE}"
+echo "Stage schedule: ${STAGE_SCHEDULE}"
 echo "Lambda RD: ${LAMBDA_RD}"
 echo "Pretrained ckpt: ${PRETRAINED_CKPT}"
 echo "Max steps: ${MAX_STEPS}"
@@ -177,8 +192,11 @@ echo "LR codec/aux/generator: ${LR_CODEC} / ${LR_AUX} / ${LR_GENERATOR}"
 echo "Codec LR warmup: ${CODEC_LR_WARMUP_STEPS} steps from factor ${CODEC_LR_WARMUP_START_FACTOR}"
 echo "Codec recon weight: ${CODEC_RECON_WEIGHT}"
 echo "Codec warmup bypass: ${CODEC_WARMUP_BYPASS}"
+echo "Truncation aug probs: ${TRUNCATION_AUG_PROBS}"
+echo "Lambda RD per stage: ${LAMBDA_RD_PER_STAGE}"
 echo "Output: ${OUTPUT_NAME}"
 echo "W&B mode: ${WANDB_MODE}"
+echo "W&B name: ${WANDB_NAME}"
 echo "Extra Hydra args: ${EXTRA_HYDRA_ARGS:-<none>}"
 echo "============================================"
 
@@ -207,6 +225,7 @@ python -m src.main \
     "model.encoder.codec_train_mode=${CODEC_TRAIN_MODE}" \
     "model.encoder.codec_input=${CODEC_INPUT}" \
     "train.phase=${TRAIN_PHASE}" \
+    "train.stage_schedule=${STAGE_SCHEDULE}" \
     "train.lambda_rd=${LAMBDA_RD}" \
     "train.lr_codec=${LR_CODEC}" \
     "train.lr_aux=${LR_AUX}" \
@@ -217,7 +236,9 @@ python -m src.main \
     "train.codec_lr_warmup_start_factor=${CODEC_LR_WARMUP_START_FACTOR}" \
     "train.codec_recon_weight=${CODEC_RECON_WEIGHT}" \
     "train.codec_warmup_bypass=${CODEC_WARMUP_BYPASS}" \
+    "train.truncation_aug_probs=${TRUNCATION_AUG_PROBS}" \
+    "train.lambda_rd_per_stage=${LAMBDA_RD_PER_STAGE}" \
     "test.compress=false" \
     "wandb.mode=${WANDB_MODE}" \
-    "wandb.name=hisplat_msh_${TRAIN_PHASE}_lmd${LAMBDA_RD}" \
+    "wandb.name=${WANDB_NAME}" \
     "${EXTRA_ARGS_ARR[@]}"

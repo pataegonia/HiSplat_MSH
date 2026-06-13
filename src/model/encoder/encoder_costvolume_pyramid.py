@@ -144,6 +144,7 @@ class EncoderCostVolumePyramid(Encoder):
         visualization_dump: Optional[dict] = None,
         scene_names: Optional[list] = None,
         codec_mode: str = "forward",
+        stop_stage: Optional[int] = None,
     ):
         return self._run_pyramid(
             context,
@@ -152,6 +153,7 @@ class EncoderCostVolumePyramid(Encoder):
             visualization_dump,
             scene_names,
             codec_mode=codec_mode,
+            stop_stage=stop_stage,
         )
 
     def _run_pyramid(
@@ -163,6 +165,7 @@ class EncoderCostVolumePyramid(Encoder):
         scene_names: Optional[list] = None,
         codec_mode: str = "forward",
         codec_payloads: Optional[dict] = None,
+        stop_stage: Optional[int] = None,
     ):
         features_list = self.backbone(
             context,
@@ -187,6 +190,7 @@ class EncoderCostVolumePyramid(Encoder):
             encoder=self,
             codec_mode=codec_mode,
             codec_payloads=codec_payloads,
+            stop_stage=stop_stage,
         )
 
     def compress(

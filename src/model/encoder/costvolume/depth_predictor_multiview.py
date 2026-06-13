@@ -194,6 +194,7 @@ class DepthPredictorMultiViewPyramid(nn.Module):
         encoder=None,
         codec_mode="forward",
         codec_payloads=None,
+        stop_stage=None,
     ):
         """IMPORTANT: this model is in (v b), NOT (b v), due to some historical issues.
         keep this in mind when performing any operation related to the view dim"""
@@ -208,7 +209,9 @@ class DepthPredictorMultiViewPyramid(nn.Module):
         depths, pre_depth = None, None
         result_dict = {"stage0": {}, "stage1": {}, "stage2": {}}
         gaussian_dict = {k: {} for k in result_dict.keys()}
-        for i in range(len(self.depth_predictor)):
+        num_stages = len(self.depth_predictor)
+        last_stage = num_stages - 1 if stop_stage is None else min(stop_stage, num_stages - 1)
+        for i in range(last_stage + 1):
             init = i == 0
             depth_size = cnn_feature[i].size()[-2:]
             reverse_interval = 1 / self.depth_candi_list[0]

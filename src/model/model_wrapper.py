@@ -2,7 +2,7 @@ import copy
 import json
 import os
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from functools import reduce
 from pathlib import Path
 from typing import Optional, Protocol, runtime_checkable
@@ -63,6 +63,7 @@ class TestCfg:
     eval_time_skip_steps: int
     test_all_ckpt: bool
     compress: bool = False
+    eval_stages: list[int] = field(default_factory=lambda: [0, 1, 2])
 
 
 @dataclass
@@ -88,6 +89,9 @@ class TrainCfg:
     codec_lr_warmup_start_factor: float = 0.1
     codec_recon_weight: float = 1.0
     codec_warmup_bypass: bool = True
+    truncation_aug_probs: list[float] | None = None
+    lambda_rd_per_stage: list[float] | None = None
+    stage_schedule: str = "joint"
 
 
 @runtime_checkable
@@ -114,6 +118,8 @@ class RateLoss(nn.Module):
 
 
 class ModelWrapper(LightningModule):
+    TOTAL_STAGES = 3
+
     logger: Optional[WandbLogger]
     encoder: nn.Module
     encoder_visualizer: Optional[EncoderVisualizer]
@@ -167,95 +173,262 @@ class ModelWrapper(LightningModule):
     def _train_forward_codec_mode(self) -> str:
         return "bypass" if self._warmup_codec_bypass() else "forward"
 
+    @staticmethod
+    def _set_module_trainable(module: nn.Module, trainable: bool) -> None:
+        for param in module.parameters():
+            param.requires_grad = trainable
+        if not trainable:
+            module.eval()
+
+    @classmethod
+    def _schedule_to_train_stages(cls, schedule: str) -> set[int]:
+        schedules = {
+            "stage0_only": {0},
+            "stage1_only": {1},
+            "stage2_only": {2},
+            "joint": set(range(cls.TOTAL_STAGES)),
+        }
+        if schedule not in schedules:
+            valid = ", ".join(schedules.keys())
+            raise ValueError(f"train.stage_schedule must be one of {valid}; got '{schedule}'.")
+        return set(schedules[schedule])
+
+    @staticmethod
+    def _schedule_to_stop_stage(schedule: str) -> int | None:
+        schedules = {
+            "stage0_only": 0,
+            "stage1_only": 1,
+            "stage2_only": 2,
+            "joint": None,
+        }
+        if schedule not in schedules:
+            valid = ", ".join(schedules.keys())
+            raise ValueError(f"train.stage_schedule must be one of {valid}; got '{schedule}'.")
+        return schedules[schedule]
+
+    @classmethod
+    def _available_stage_indices(cls, gaussian_dict) -> list[int]:
+        return [
+            i
+            for i in range(cls.TOTAL_STAGES)
+            if f"stage{i}" in gaussian_dict and "gaussians" in gaussian_dict[f"stage{i}"]
+        ]
+
+    @staticmethod
+    def _schedule_log_value(schedule: str) -> float:
+        values = {
+            "joint": 0.0,
+            "stage0_only": 1.0,
+            "stage1_only": 2.0,
+            "stage2_only": 3.0,
+        }
+        if schedule not in values:
+            valid = ", ".join(values.keys())
+            raise ValueError(f"train.stage_schedule must be one of {valid}; got '{schedule}'.")
+        return values[schedule]
+
+    def _apply_stage_schedule(self) -> None:
+        schedule = self.train_cfg.stage_schedule
+        self._schedule_to_train_stages(schedule)
+        if schedule == "joint":
+            return
+
+        train_stages = self._schedule_to_train_stages(schedule)
+        enc = self.encoder
+        backbone_train = schedule == "stage0_only"
+
+        self._set_module_trainable(enc.backbone, backbone_train)
+        self._set_module_trainable(enc.gaussian_adapter, backbone_train)
+        for i, submodule in enumerate(enc.depth_predictor.depth_predictor):
+            self._set_module_trainable(submodule, i in train_stages)
+
+        modulater_train = schedule in {"stage1_only", "stage2_only"}
+        self._set_module_trainable(enc.depth_predictor.modulater, modulater_train)
+
+    def setup(self, stage: str) -> None:
+        if stage == "fit":
+            self._apply_stage_schedule()
+
+    def on_train_epoch_start(self) -> None:
+        self._apply_stage_schedule()
+
+    def _sample_truncation_stage(self, num_stages: int, device: torch.device) -> int:
+        probs = self.train_cfg.truncation_aug_probs
+        if probs is None:
+            return num_stages - 1
+        if len(probs) != num_stages:
+            raise ValueError(
+                f"train.truncation_aug_probs must have {num_stages} entries; got {len(probs)}."
+            )
+        probs_tensor = torch.as_tensor(probs, dtype=torch.float32, device=device)
+        if torch.any(probs_tensor < 0):
+            raise ValueError("train.truncation_aug_probs must be non-negative.")
+        probs_sum = probs_tensor.sum()
+        if probs_sum <= 0:
+            raise ValueError("train.truncation_aug_probs must sum to a positive value.")
+        probs_tensor = probs_tensor / probs_sum
+        return int(torch.multinomial(probs_tensor, 1).item())
+
+    def _lambda_rd_per_stage(self, expected_num_stages: int) -> list[float] | None:
+        if self.train_cfg.lambda_rd_per_stage is not None:
+            lambdas = list(self.train_cfg.lambda_rd_per_stage)
+            if len(lambdas) != expected_num_stages:
+                raise ValueError(
+                    f"train.lambda_rd_per_stage must have {expected_num_stages} entries; got {len(lambdas)}."
+                )
+        elif self.train_cfg.lambda_rd is not None:
+            lambdas = [self.train_cfg.lambda_rd] * expected_num_stages
+        else:
+            return None
+        if any(value < 0 for value in lambdas):
+            raise ValueError("Rate lambda values must be non-negative.")
+        return lambdas
+
     def training_step(self, batch, batch_idx):
-        max_steps = get_cfg().trainer.max_steps
         batch: BatchedExample = self.data_shim(batch)
         b, tar_v, c, h, w = batch["target"]["image"].shape
         _, con_v, _, con_h, con_w = batch["context"]["image"].shape
-        # Run the model and get gaussians
+        schedule = self.train_cfg.stage_schedule
+
         gaussian_dict, result_dict = self.encoder(
             batch["context"],
             self.global_step,
             False,
             scene_names=batch["scene"],
             codec_mode=self._train_forward_codec_mode(),
+            stop_stage=self._schedule_to_stop_stage(schedule),
         )
         target_gt = batch["target"]["image"]
-        # For three resolutions, render them
-        total_loss = 0
-        total_bpp = None
-        total_estimated_bits = None
-        total_estimated_kb = None
-        total_codec_recon = None
+        available_stage_indices = self._available_stage_indices(gaussian_dict)
+        if not available_stage_indices:
+            raise RuntimeError("No stages produced gaussians.")
+
+        truncation_enabled = schedule == "joint" and self.train_cfg.truncation_aug_probs is not None
+        if schedule == "joint":
+            active_until_stage = self._sample_truncation_stage(len(available_stage_indices), target_gt.device)
+            active_stage_indices = {i for i in available_stage_indices if i <= active_until_stage}
+        else:
+            active_stage_indices = self._schedule_to_train_stages(schedule) & set(available_stage_indices)
+            active_until_stage = max(active_stage_indices) if active_stage_indices else -1
+
+        stage_lambdas = self._lambda_rd_per_stage(self.TOTAL_STAGES)
+        self.log("train/truncation_stage", float(active_until_stage))
+        self.log("train/stage_schedule", self._schedule_log_value(schedule))
+
+        total_loss = target_gt.new_zeros(())
+        total_codec_recon_active = None
+        total_codec_recon_all = None
+        total_estimated_bits_active = None
+        total_estimated_bits_all = None
+        total_estimated_kb_all = None
+        total_bpp_all = None
+        weighted_rate_bits = None
         loss_dict = {}
-        for i in range(len(gaussian_dict)):
+        for i in available_stage_indices:
             gaussians = gaussian_dict[f"stage{i}"]["gaussians"]
-            pre_output = None if i == 0 else output
-            output = self.decoder.forward(
-                gaussians,
-                batch["target"]["extrinsics"],
-                batch["target"]["intrinsics"],
-                batch["target"]["near"],
-                batch["target"]["far"],
-                (h, w),
-                depth_mode=self.train_cfg.depth_mode,
-            )
-            # Compute metrics.
-            psnr_probabilistic = compute_psnr(
-                rearrange(target_gt, "b v c h w -> (b v) c h w"),
-                rearrange(output.color, "b v c h w -> (b v) c h w"),
-            )
-            self.log(f"train/psnr_probabilistic_stage{i}", psnr_probabilistic.mean())
-            sup_batch = copy.deepcopy(batch)
-            # Compute and log loss.
-            for loss_fn in self.losses:
-                loss = loss_fn.forward(output, sup_batch, gaussians, self.global_step)
-                self.log(f"loss/{loss_fn.name}_{i}", loss)
-                loss_dict[f"{loss_fn.name}_{i}"] = loss.item()
-                if not self._warmup_codec_bypass():
-                    total_loss = total_loss + loss
+            stage_is_active = i in active_stage_indices
+            if stage_is_active:
+                output = self.decoder.forward(
+                    gaussians,
+                    batch["target"]["extrinsics"],
+                    batch["target"]["intrinsics"],
+                    batch["target"]["near"],
+                    batch["target"]["far"],
+                    (h, w),
+                    depth_mode=self.train_cfg.depth_mode,
+                )
+                # Compute metrics.
+                psnr_probabilistic = compute_psnr(
+                    rearrange(target_gt, "b v c h w -> (b v) c h w"),
+                    rearrange(output.color, "b v c h w -> (b v) c h w"),
+                )
+                self.log(f"train/psnr_probabilistic_stage{i}", psnr_probabilistic.mean())
+                sup_batch = copy.deepcopy(batch)
+                # Compute and log loss.
+                for loss_fn in self.losses:
+                    loss = loss_fn.forward(output, sup_batch, gaussians, self.global_step)
+                    self.log(f"loss/{loss_fn.name}_{i}", loss)
+                    loss_dict[f"{loss_fn.name}_{i}"] = loss.item()
+                    if not self._warmup_codec_bypass():
+                        total_loss = total_loss + loss
             codec_recon = result_dict[f"stage{i}"].get("codec_recon_loss")
             if codec_recon is not None:
                 self.log(f"loss/codec_recon_stage{i}", codec_recon)
                 loss_dict[f"codec_recon_{i}"] = codec_recon.item()
-                total_codec_recon = codec_recon if total_codec_recon is None else total_codec_recon + codec_recon
+                total_codec_recon_all = (
+                    codec_recon if total_codec_recon_all is None else total_codec_recon_all + codec_recon
+                )
+                if stage_is_active:
+                    total_codec_recon_active = (
+                        codec_recon
+                        if total_codec_recon_active is None
+                        else total_codec_recon_active + codec_recon
+                    )
             estimated_bits = result_dict[f"stage{i}"].get("estimated_bits")
             if estimated_bits is not None:
                 estimated_num_bits = self._estimated_bits_num_bits(estimated_bits)
-                total_estimated_bits = (
+                total_estimated_bits_all = (
                     estimated_num_bits
-                    if total_estimated_bits is None
-                    else total_estimated_bits + estimated_num_bits
+                    if total_estimated_bits_all is None
+                    else total_estimated_bits_all + estimated_num_bits
                 )
                 estimated_kb_i = self._bits_to_kbytes(estimated_num_bits)
                 self.log(f"loss/estimated_kb_stage{i}", estimated_kb_i)
                 loss_dict[f"estimated_kb_{i}"] = estimated_kb_i.detach().item()
-                total_estimated_kb = (
-                    estimated_kb_i if total_estimated_kb is None else total_estimated_kb + estimated_kb_i
+                total_estimated_kb_all = (
+                    estimated_kb_i
+                    if total_estimated_kb_all is None
+                    else total_estimated_kb_all + estimated_kb_i
                 )
+                if stage_is_active:
+                    total_estimated_bits_active = (
+                        estimated_num_bits
+                        if total_estimated_bits_active is None
+                        else total_estimated_bits_active + estimated_num_bits
+                    )
+                    if stage_lambdas is not None:
+                        weighted_bits_i = stage_lambdas[i] * estimated_num_bits
+                        weighted_rate_bits = (
+                            weighted_bits_i
+                            if weighted_rate_bits is None
+                            else weighted_rate_bits + weighted_bits_i
+                        )
+                        self.log(f"loss/lambda_rd_stage{i}", stage_lambdas[i])
+                        loss_dict[f"lambda_rd_{i}"] = stage_lambdas[i]
 
                 bpp_i = self.rate_loss(estimated_bits, gaussians.harmonics.shape)
                 self.log(f"loss/bpp_attr_stage{i}", bpp_i)
                 self.log(f"loss/bpp_stage{i}", bpp_i)
                 loss_dict[f"bpp_{i}"] = bpp_i.item()
-                total_bpp = bpp_i if total_bpp is None else total_bpp + bpp_i
-        if total_estimated_kb is not None:
-            self.log("loss/estimated_kb", total_estimated_kb)
-        if total_bpp is not None:
+                total_bpp_all = bpp_i if total_bpp_all is None else total_bpp_all + bpp_i
+        if total_estimated_kb_all is not None:
+            self.log("loss/estimated_kb_total_all", total_estimated_kb_all)
+        if total_estimated_bits_all is not None:
+            self.log("loss/rate_bpp_all", total_estimated_bits_all / (b * con_v * con_h * con_w))
+        if total_estimated_bits_active is not None:
+            self.log("loss/estimated_kb_active", self._bits_to_kbytes(total_estimated_bits_active))
+        if total_bpp_all is not None:
             # legacy per-Gaussian-attribute proxy, diagnostic only (NOT in Lagrangian)
-            self.log("loss/bpp_attr_total", total_bpp)
-            self.log("loss/bpp_total", total_bpp)
-        if total_estimated_bits is not None and self.train_cfg.lambda_rd is not None:
+            self.log("loss/bpp_attr_total", total_bpp_all)
+            self.log("loss/bpp_total", total_bpp_all)
+        if total_codec_recon_all is not None:
+            self.log("loss/codec_recon_total_all", total_codec_recon_all)
+        if total_estimated_bits_active is not None and stage_lambdas is not None:
             # standard LIC rate: total estimated bits over a single consistent
-            # denominator (context input pixels), so the optimizer is free to
-            # allocate bits across stages.
-            rate_bpp = total_estimated_bits / (b * con_v * con_h * con_w)
-            self.log("loss/rate_bpp_total", rate_bpp)
-            total_loss = total_loss + self.train_cfg.lambda_rd * rate_bpp
-        if total_codec_recon is not None and self.train_cfg.codec_recon_weight > 0:
-            self.log("loss/codec_recon_total", total_codec_recon)
-            total_loss = total_loss + self.train_cfg.codec_recon_weight * total_codec_recon
-        if self._warmup_codec_bypass() and total_codec_recon is None:
+            # denominator (context input pixels), applied only to active stages.
+            self.log("loss/rate_bpp_active", total_estimated_bits_active / (b * con_v * con_h * con_w))
+            if weighted_rate_bits is not None:
+                weighted_rate_loss = weighted_rate_bits / (b * con_v * con_h * con_w)
+                self.log("loss/rate_rd_weighted", weighted_rate_loss)
+                total_loss = total_loss + weighted_rate_loss
+        elif stage_lambdas is not None and any(stage_lambdas[i] > 0 for i in active_stage_indices):
+            raise ValueError("Rate lambda is enabled, but no estimated_bits were produced.")
+        if truncation_enabled:
+            loss_dict["truncation_stage"] = active_until_stage
+        if total_codec_recon_active is not None and self.train_cfg.codec_recon_weight > 0:
+            self.log("loss/codec_recon_total_active", total_codec_recon_active)
+            total_loss = total_loss + self.train_cfg.codec_recon_weight * total_codec_recon_active
+        if self._warmup_codec_bypass() and total_codec_recon_active is None:
             raise ValueError("Warmup codec bypass requires codec reconstruction losses.")
         if self._warmup_codec_bypass() and self.train_cfg.codec_recon_weight <= 0:
             raise ValueError("Warmup codec bypass requires train.codec_recon_weight > 0.")
@@ -393,17 +566,34 @@ class ModelWrapper(LightningModule):
                 gaussian_dict, result_dict = self.encoder(
                     batch["context"], self.global_step, False, scene_names=batch["scene"]
                 )
-        with self.benchmarker.time("decoder", num_calls=v):
-            gaussians = gaussian_dict[f"stage2"]["gaussians"]
-            output = self.decoder.forward(
-                gaussians,
-                batch["target"]["extrinsics"],
-                batch["target"]["intrinsics"],
-                batch["target"]["near"],
-                batch["target"]["far"],
-                (h, w),
-                depth_mode=self.train_cfg.depth_mode,
-            )
+        eval_stage_indices = list(dict.fromkeys(self.test_cfg.eval_stages))
+        if not eval_stage_indices:
+            raise ValueError("test.eval_stages must contain at least one stage.")
+        missing_stages = [
+            stage_idx
+            for stage_idx in eval_stage_indices
+            if f"stage{stage_idx}" not in gaussian_dict
+            or "gaussians" not in gaussian_dict[f"stage{stage_idx}"]
+        ]
+        if missing_stages:
+            raise ValueError(f"Requested test.eval_stages are unavailable: {missing_stages}.")
+
+        stage_outputs = {}
+        with self.benchmarker.time("decoder", num_calls=v * len(eval_stage_indices)):
+            for stage_idx in eval_stage_indices:
+                gaussians = gaussian_dict[f"stage{stage_idx}"]["gaussians"]
+                stage_outputs[stage_idx] = self.decoder.forward(
+                    gaussians,
+                    batch["target"]["extrinsics"],
+                    batch["target"]["intrinsics"],
+                    batch["target"]["near"],
+                    batch["target"]["far"],
+                    (h, w),
+                    depth_mode=self.train_cfg.depth_mode,
+                )
+
+        legacy_stage_idx = 2 if 2 in stage_outputs else max(stage_outputs)
+        output = stage_outputs[legacy_stage_idx]
         (scene,) = batch["scene"]
         name = get_cfg()["wandb"]["name"]
         path = self.test_cfg.output_path / name
@@ -422,19 +612,28 @@ class ModelWrapper(LightningModule):
         if self.test_cfg.compute_scores:
             if batch_idx < self.test_cfg.eval_time_skip_steps:
                 self.time_skip_steps_dict["encoder"] += 1
-                self.time_skip_steps_dict["decoder"] += v
-            rgb = images_prob
+                self.time_skip_steps_dict["decoder"] += v * len(eval_stage_indices)
 
-            if f"psnr" not in self.test_step_outputs:
-                self.test_step_outputs[f"psnr"] = []
-            if f"ssim" not in self.test_step_outputs:
-                self.test_step_outputs[f"ssim"] = []
-            if f"lpips" not in self.test_step_outputs:
-                self.test_step_outputs[f"lpips"] = []
-            psnr, ssim, lpips = compute_psnr(rgb_gt, rgb), compute_ssim(rgb_gt, rgb), compute_lpips(rgb_gt, rgb)
-            self.test_step_outputs[f"psnr"].append(psnr.mean().item())
-            self.test_step_outputs[f"ssim"].append(ssim.mean().item())
-            self.test_step_outputs[f"lpips"].append(lpips.mean().item())
+            def append_score(metric_name: str, value: float) -> None:
+                if metric_name not in self.test_step_outputs:
+                    self.test_step_outputs[metric_name] = []
+                self.test_step_outputs[metric_name].append(value)
+
+            stage_scores = {}
+            for stage_idx in eval_stage_indices:
+                rgb = stage_outputs[stage_idx].color[0]
+                psnr_stage = compute_psnr(rgb_gt, rgb)
+                ssim_stage = compute_ssim(rgb_gt, rgb)
+                lpips_stage = compute_lpips(rgb_gt, rgb)
+                stage_scores[stage_idx] = (psnr_stage, ssim_stage, lpips_stage)
+                append_score(f"psnr_stage{stage_idx}", psnr_stage.mean().item())
+                append_score(f"ssim_stage{stage_idx}", ssim_stage.mean().item())
+                append_score(f"lpips_stage{stage_idx}", lpips_stage.mean().item())
+
+            psnr, ssim, lpips = stage_scores[legacy_stage_idx]
+            append_score("psnr", psnr.mean().item())
+            append_score("ssim", ssim.mean().item())
+            append_score("lpips", lpips.mean().item())
 
             estimated_kbytes_by_stage = self._estimated_kbytes_by_stage(result_dict)
             if estimated_kbytes_by_stage:
@@ -446,10 +645,31 @@ class ModelWrapper(LightningModule):
                     if kb_key not in self.test_step_outputs:
                         self.test_step_outputs[kb_key] = []
                     self.test_step_outputs[kb_key].append(stage_kbytes)
+                _, context_views, _, context_h, context_w = batch["context"]["image"].shape
+                denom = b * context_views * context_h * context_w
+                for stage_idx in eval_stage_indices:
+                    cumulative_bits = None
+                    for i in range(stage_idx + 1):
+                        stage_result = result_dict.get(f"stage{i}", {})
+                        estimated_bits = stage_result.get("estimated_bits")
+                        if estimated_bits is None:
+                            continue
+                        stage_bits = self._estimated_bits_num_bits(estimated_bits)
+                        cumulative_bits = stage_bits if cumulative_bits is None else cumulative_bits + stage_bits
+                    if cumulative_bits is None:
+                        continue
+                    cumulative_bits_value = cumulative_bits.detach().item()
+                    append_score(
+                        f"estimated_kb_stage{stage_idx}_cumulative",
+                        self._bits_to_kbytes(cumulative_bits).detach().item(),
+                    )
+                    append_score(f"estimated_bits_stage{stage_idx}_cumulative", float(cumulative_bits_value))
+                    append_score(f"estimated_bpp_stage{stage_idx}_cumulative", cumulative_bits_value / denom)
 
             if codec_payloads is not None:
                 total_bytes = self._codec_payload_num_bytes(codec_payloads)
                 total_bits = self._codec_payload_num_bits(codec_payloads)
+                stage_payload_bytes = self._codec_payload_bytes_by_stage(codec_payloads)
                 _, context_views, _, context_h, context_w = batch["context"]["image"].shape
                 denom = b * context_views * context_h * context_w
                 if "compressed_kb" not in self.test_step_outputs:
@@ -464,7 +684,7 @@ class ModelWrapper(LightningModule):
                 self.test_step_outputs["compressed_bits"].append(total_bits)
                 self.test_step_outputs["compressed_mbytes"].append(total_bits / 8 / (1024 * 1024))
                 self.test_step_outputs["compressed_bpp"].append(total_bits / denom)
-                for stage, stage_bytes in self._codec_payload_bytes_by_stage(codec_payloads).items():
+                for stage, stage_bytes in stage_payload_bytes.items():
                     stage_bits = stage_bytes * 8
                     kb_key = f"compressed_kb_{stage}"
                     bits_key = f"compressed_bits_{stage}"
@@ -478,6 +698,24 @@ class ModelWrapper(LightningModule):
                     self.test_step_outputs[kb_key].append(self._bytes_to_kbytes(stage_bytes))
                     self.test_step_outputs[bits_key].append(stage_bits)
                     self.test_step_outputs[bpp_key].append(stage_bits / denom)
+                for stage_idx in eval_stage_indices:
+                    cumulative_bytes = sum(
+                        stage_payload_bytes.get(f"stage{i}", 0)
+                        for i in range(stage_idx + 1)
+                    )
+                    cumulative_bits = cumulative_bytes * 8
+                    append_score(
+                        f"compressed_kb_stage{stage_idx}_cumulative",
+                        self._bytes_to_kbytes(cumulative_bytes),
+                    )
+                    append_score(
+                        f"compressed_bits_stage{stage_idx}_cumulative",
+                        float(cumulative_bits),
+                    )
+                    append_score(
+                        f"compressed_bpp_stage{stage_idx}_cumulative",
+                        cumulative_bits / denom,
+                    )
             # Create the parent directory if it doesn't already exist.
             log_path = path / scene / "psnr.txt"
             psnr_log = [f"example{j}: {psnr[j].item():.2f} \n" for j in range(len(psnr))]
@@ -549,13 +787,18 @@ class ModelWrapper(LightningModule):
             False,
             scene_names=batch["scene"],
             codec_mode=self._train_forward_codec_mode(),
+            stop_stage=self._schedule_to_stop_stage(self.train_cfg.stage_schedule),
         )
+        available_stage_indices = self._available_stage_indices(gaussian_dict)
+        if not available_stage_indices:
+            raise RuntimeError("No stages produced gaussians.")
+        last_available_stage = available_stage_indices[-1]
         output_list = []
         # for debug
         render_img_debug_list = []
         depth_fine_debug_list = []
         depth_coarse_debug_list = []
-        for i in range(len(gaussian_dict)):
+        for i in available_stage_indices:
             gaussians = gaussian_dict[f"stage{i}"]["gaussians"]
             output = self.decoder.forward(
                 gaussians,
@@ -595,7 +838,7 @@ class ModelWrapper(LightningModule):
                 psnr = compute_psnr(rgb_gt, rgb).mean()
                 lpips = compute_lpips(rgb_gt, rgb).mean()
                 ssim = compute_ssim(rgb_gt, rgb).mean()
-                if i == len(gaussian_dict) - 1:
+                if i == last_available_stage:
                     self.log(f"val/psnr_{tag}", psnr)
                     self.log(f"val/lpips_{tag}", lpips)
                     self.log(f"val/ssim_{tag}", ssim)
@@ -875,6 +1118,7 @@ class ModelWrapper(LightningModule):
         return None
 
     def configure_optimizers(self):
+        self._apply_stage_schedule()
         codec_params, aux_params, generator_params = self._split_codec_params()
         phase = self.train_cfg.phase
         self._aux_optimizer = None

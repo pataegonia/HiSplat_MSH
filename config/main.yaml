@@ -77,6 +77,9 @@ train:
   codec_lr_warmup_start_factor: 0.1
   codec_recon_weight: 1.0
   codec_warmup_bypass: true
+  truncation_aug_probs: null
+  lambda_rd_per_stage: null
+  stage_schedule: joint
 
 test:
   output_path: outputs/test
@@ -86,6 +89,7 @@ test:
   save_video: false
   test_all_ckpt: false
   compress: false
+  eval_stages: [0, 1, 2]
 
 seed: 111123
 checkpoint_path: null
